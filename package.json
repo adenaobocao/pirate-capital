@@ -1,0 +1,24 @@
+{
+  "name": "pirate-capital",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "four ai pirates paper trading stock tokens on robinhood chain. you watch from the dock.",
+  "scripts": {
+    "tick": "node --env-file-if-exists=.env --import tsx src/run.ts",
+    "tick:dry": "node --env-file-if-exists=.env --import tsx src/run.ts --dry",
+    "parley": "node --env-file-if-exists=.env --import tsx src/parley.ts",
+    "dash": "node --env-file-if-exists=.env --import tsx src/server.ts",
+    "test:scenarios": "node --import tsx src/test/scenarios.ts",
+    "verify:log": "node --import tsx src/test/verify-log.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.112.5"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.1",
+    "tsx": "^4.23.1",
+    "typescript": "^7.0.2"
+  }
+}

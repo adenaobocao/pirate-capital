@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1350" width="1080" height="1350">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#22232A" stroke-width="0.5" opacity="0.35"/>
+    </pattern>
+    <pattern id="dotgrid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.8" fill="#33343C" opacity="0.6"/>
+    </pattern>
+    <linearGradient id="tonfade" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0098EA" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#0098EA" stop-opacity="0"/>
+    </linearGradient>
+    
+  </defs>
+  <rect width="1080" height="1350" fill="#0A0A0B"/>
+  
+    <g font-family="'JetBrains Mono', 'DejaVu Sans Mono', monospace" font-size="20" letter-spacing="0.5">
+      <text x="60" y="60" fill="#5A6F60">// 05 — manifesto</text>
+      <text x="1020" y="60" text-anchor="end" fill="#7C8087">jettonpad.fun</text>
+      <line x1="60" y1="80" x2="1020" y2="80" stroke="#22232A" stroke-width="1"/>
+    </g>
+    
+  
+  <!-- preamble (skipped, header bar covers it) -->
+
+  <!-- title -->
+  <g font-family="'Inter', 'DejaVu Sans', sans-serif" font-weight="800" letter-spacing="-3">
+    <text x="60" y="270" font-size="80" fill="#F2F3F5">what's</text>
+    <text x="60" y="350" font-size="80" fill="#7C8087">not here.</text>
+  </g>
+
+  <!-- divider -->
+  <line x1="60" y1="400" x2="1020" y2="400" stroke="#33343C"/>
+
+  <!-- the list -->
+  <g font-family="'JetBrains Mono', 'DejaVu Sans Mono', monospace" font-size="38" font-weight="500">
+    <!-- 01 -->
+    <text x="60" y="475" fill="#FF4D9D">no</text>
+    <text x="170" y="475" fill="#F2F3F5">compiler.</text>
+    <line x1="170" y1="467" x2="450" y2="467" stroke="#FF4D9D" stroke-width="2" opacity="0.7"/>
+
+    <!-- 02 -->
+    <text x="60" y="545" fill="#FF4D9D">no</text>
+    <text x="170" y="545" fill="#F2F3F5">whitepaper.</text>
+    <line x1="170" y1="537" x2="510" y2="537" stroke="#FF4D9D" stroke-width="2" opacity="0.7"/>
+
+    <!-- 03 -->
+    <text x="60" y="615" fill="#FF4D9D">no</text>
+    <text x="170" y="615" fill="#F2F3F5">gas to cry about.</text>
+    <line x1="170" y1="607" x2="635" y2="607" stroke="#FF4D9D" stroke-width="2" opacity="0.7"/>
+
+    <!-- 04 -->
+    <text x="60" y="685" fill="#FF4D9D">no</text>
+    <text x="170" y="685" fill="#F2F3F5">contracts to write.</text>
+    <line x1="170" y1="677" x2="660" y2="677" stroke="#FF4D9D" stroke-width="2" opacity="0.7"/>
+
+    <!-- 05 -->
+    <text x="60" y="755" fill="#FF4D9D">no</text>
+    <text x="170" y="755" fill="#F2F3F5">permission slips.</text>
+    <line x1="170" y1="747" x2="610" y2="747" stroke="#FF4D9D" stroke-width="2" opacity="0.7"/>
+
+    <!-- 06 -->
+    <text x="60" y="825" fill="#FF4D9D">no</text>
+    <text x="170" y="825" fill="#F2F3F5">rugs.</text>
+    <text x="350" y="825" fill="#7C8087" font-size="24" font-style="italic">// we hope</text>
+    <line x1="170" y1="817" x2="305" y2="817" stroke="#FF4D9D" stroke-width="2" opacity="0.7"/>
+  </g>
+
+  <!-- divider -->
+  <line x1="60" y1="900" x2="1020" y2="900" stroke="#33343C"/>
+
+  <!-- positive flip -->
+  <g font-family="'Inter', 'DejaVu Sans', sans-serif" font-weight="700" letter-spacing="-1">
+    <text x="60" y="975" font-size="42" fill="#7C8087">just</text>
+    <text x="60" y="1035" font-size="60" fill="#00E37F">three fields.</text>
+    <text x="60" y="1100" font-size="60" fill="#00E37F">one signature.</text>
+    <text x="60" y="1165" font-size="60" fill="#0098EA">your jetton.</text>
+  </g>
+
+  
+    <g font-family="'JetBrains Mono', 'DejaVu Sans Mono', monospace" font-size="20" letter-spacing="0.5">
+      <line x1="60" y1="1250" x2="1020" y2="1250" stroke="#22232A" stroke-width="1"/>
+      <text x="60" y="1290" fill="#F2F3F5">
+        <tspan fill="#00E37F">▌</tspan> jettonpad.fun
+      </text>
+      <text x="1020" y="1290" text-anchor="end" fill="#7C8087">→ rug yourself in peace</text>
+    </g>
+    
+</svg>

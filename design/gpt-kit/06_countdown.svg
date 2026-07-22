@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1350" width="1080" height="1350">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#22232A" stroke-width="0.5" opacity="0.35"/>
+    </pattern>
+    <pattern id="dotgrid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.8" fill="#33343C" opacity="0.6"/>
+    </pattern>
+    <linearGradient id="tonfade" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0098EA" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#0098EA" stop-opacity="0"/>
+    </linearGradient>
+    
+  </defs>
+  <rect width="1080" height="1350" fill="#0A0A0B"/>
+  
+    <g font-family="'JetBrains Mono', 'DejaVu Sans Mono', monospace" font-size="20" letter-spacing="0.5">
+      <text x="60" y="60" fill="#5A6F60">// 06 — T−MINUS</text>
+      <text x="1020" y="60" text-anchor="end" fill="#7C8087">jettonpad.fun</text>
+      <line x1="60" y1="80" x2="1020" y2="80" stroke="#22232A" stroke-width="1"/>
+    </g>
+    
+  
+  <!-- preamble: T-MINUS warning style -->
+  <g font-family="'JetBrains Mono', 'DejaVu Sans Mono', monospace">
+    <text x="60" y="180" font-size="20" fill="#FFD000" letter-spacing="2">// SYS · ALERT</text>
+    <text x="60" y="220" font-size="22" fill="#7C8087">mainnet ships in</text>
+  </g>
+
+  <!-- T-MINUS label -->
+  <g font-family="'Inter', 'DejaVu Sans', sans-serif" font-weight="900" letter-spacing="-3">
+    <text x="60" y="320" font-size="80" fill="#F2F3F5">T<tspan fill="#FFD000">−</tspan>MINUS</text>
+  </g>
+
+  <!-- countdown digits panel -->
+  <g>
+    <rect x="60" y="380" width="960" height="280" fill="#111113" stroke="#33343C" rx="6"/>
+
+    <!-- 4 columns: dd : hh : mm : ss   panel: x=60..1020 (W=960) -->
+    <g font-family="'JetBrains Mono', 'DejaVu Sans Mono', monospace" font-weight="700">
+      <!-- days at center 165 -->
+      <rect x="105"  y="490" width="48" height="22" fill="#F2F3F5" rx="2"/>
+      <rect x="178"  y="490" width="48" height="22" fill="#F2F3F5" rx="2"/>
+      <text x="165" y="610" font-size="20" fill="#7C8087" text-anchor="middle" font-family="'JetBrains Mono', 'DejaVu Sans Mono', monospace">days</text>
+
+      <text x="305" y="540" font-size="170" fill="#FFD000" text-anchor="middle">:</text>
+
+      <!-- hours at center 425 -->
+      <rect x="365"  y="490" width="48" height="22" fill="#F2F3F5" rx="2"/>
+      <rect x="438"  y="490" width="48" height="22" fill="#F2F3F5" rx="2"/>
+      <text x="425" y="610" font-size="20" fill="#7C8087" text-anchor="middle" font-family="'JetBrains Mono', 'DejaVu Sans Mono', monospace">hours</text>
+
+      <text x="565" y="540" font-size="170" fill="#FFD000" text-anchor="middle">:</text>
+
+      <!-- min at center 685 -->
+      <rect x="625"  y="490" width="48" height="22" fill="#F2F3F5" rx="2"/>
+      <rect x="698"  y="490" width="48" height="22" fill="#F2F3F5" rx="2"/>
+      <text x="685" y="610" font-size="20" fill="#7C8087" text-anchor="middle" font-family="'JetBrains Mono', 'DejaVu Sans Mono', monospace">min</text>
+
+      <text x="825" y="540" font-size="170" fill="#FFD000" text-anchor="middle">:</text>
+
+      <!-- sec at center 945 -->
+      <rect x="885"  y="490" width="48" height="22" fill="#FFD000" rx="2"/>
+      <rect x="958"  y="490" width="48" height="22" fill="#FFD000" rx="2"/>
+      <text x="945" y="610" font-size="20" fill="#FFD000" text-anchor="middle" font-family="'JetBrains Mono', 'DejaVu Sans Mono', monospace">sec</text>
+    </g>
+
+    <!-- bracket markers -->
+    <path d="M 75 395 L 75 425 M 75 395 L 105 395" stroke="#FFD000" stroke-width="2" fill="none"/>
+    <path d="M 1005 395 L 1005 425 M 1005 395 L 975 395" stroke="#FFD000" stroke-width="2" fill="none"/>
+    <path d="M 75 645 L 75 615 M 75 645 L 105 645" stroke="#FFD000" stroke-width="2" fill="none"/>
+    <path d="M 1005 645 L 1005 615 M 1005 645 L 975 645" stroke="#FFD000" stroke-width="2" fill="none"/>
+  </g>
+
+  <!-- offer block -->
+  <g>
+    <line x1="60" y1="730" x2="1020" y2="730" stroke="#33343C"/>
+    <g font-family="'Inter', 'DejaVu Sans', sans-serif" font-weight="800" letter-spacing="-2">
+      <text x="60" y="810" font-size="56" fill="#F2F3F5">first 500 names</text>
+      <text x="60" y="872" font-size="56" fill="#00E37F">deploy free.</text>
+    </g>
+    <g font-family="'JetBrains Mono', 'DejaVu Sans Mono', monospace" font-size="20">
+      <text x="60" y="918" fill="#7C8087">// worth ~0.3 TON · worth nothing in fiat · worth everything in vibes</text>
+    </g>
+  </g>
+
+  <!-- waitlist input mock -->
+  <g>
+    <rect x="60" y="970" width="960" height="100" fill="#111113" stroke="#33343C" rx="6"/>
+    <text x="100" y="1030" font-family="'JetBrains Mono', 'DejaVu Sans Mono', monospace" font-size="36" fill="#7C8087" font-weight="500">
+      <tspan fill="#0098EA">@</tspan> your.handle
+    </text>
+    <line x1="100" y1="1045" x2="380" y2="1045" stroke="#0098EA" stroke-width="2" opacity="0.6"/>
+    <text x="980" y="1030" text-anchor="end" font-family="'JetBrains Mono', 'DejaVu Sans Mono', monospace" font-size="20" fill="#5A6F60">// telegram</text>
+  </g>
+
+  <!-- notify CTA button -->
+  <g>
+    <rect x="60" y="1090" width="960" height="90" fill="#FFD000" rx="6"/>
+    <text x="540.0" y="1148" text-anchor="middle"
+          font-family="'Inter', 'DejaVu Sans', sans-serif" font-weight="800" font-size="38" fill="#0A0A0B" letter-spacing="-1">
+      notify me  →
+    </text>
+  </g>
+
+  
+    <g font-family="'JetBrains Mono', 'DejaVu Sans Mono', monospace" font-size="20" letter-spacing="0.5">
+      <line x1="60" y1="1250" x2="1020" y2="1250" stroke="#22232A" stroke-width="1"/>
+      <text x="60" y="1290" fill="#F2F3F5">
+        <tspan fill="#00E37F">▌</tspan> t.me/jettonpadfun
+      </text>
+      <text x="1020" y="1290" text-anchor="end" fill="#7C8087">→ no spam · just the link</text>
+    </g>
+    
+</svg>

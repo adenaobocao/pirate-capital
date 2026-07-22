@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1350" width="1080" height="1350">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#22232A" stroke-width="0.5" opacity="0.35"/>
+    </pattern>
+    <pattern id="dotgrid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.8" fill="#33343C" opacity="0.6"/>
+    </pattern>
+    <linearGradient id="tonfade" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0098EA" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#0098EA" stop-opacity="0"/>
+    </linearGradient>
+    
+  </defs>
+  <rect width="1080" height="1350" fill="#0A0A0B"/>
+  
+    <g font-family="'JetBrains Mono', 'DejaVu Sans Mono', monospace" font-size="20" letter-spacing="0.5">
+      <text x="60" y="60" fill="#5A6F60">// 02 — launch flow</text>
+      <text x="1020" y="60" text-anchor="end" fill="#7C8087">jettonpad.fun</text>
+      <line x1="60" y1="80" x2="1020" y2="80" stroke="#22232A" stroke-width="1"/>
+    </g>
+    
+  
+  <!-- preamble: instruction-style headline in mono, lowercase -->
+  <g font-family="'JetBrains Mono', 'DejaVu Sans Mono', monospace" font-size="34" letter-spacing="-0.5">
+    <text x="60" y="190" fill="#F2F3F5">three fields.</text>
+    <text x="60" y="240" fill="#F2F3F5">one signature.</text>
+    <text x="60" y="290" fill="#00E37F">jetton lives on TON mainnet.</text>
+  </g>
+
+  <!-- form panel -->
+  <g>
+    <rect x="60" y="350" width="960" height="640" fill="#111113" stroke="#33343C" stroke-width="1" rx="6"/>
+
+    <!-- panel header -->
+    <line x1="60" y1="402" x2="1020" y2="402" stroke="#33343C"/>
+    <g font-family="'JetBrains Mono', 'DejaVu Sans Mono', monospace" font-size="18">
+      <circle cx="90"  cy="380" r="6" fill="#FF5F56"/>
+      <circle cx="115" cy="380" r="6" fill="#FFBD2E"/>
+      <circle cx="140" cy="380" r="6" fill="#27C93F"/>
+      <text x="540.0" y="385" text-anchor="middle" fill="#7C8087">~/jettonpad/launch.create</text>
+    </g>
+
+    <!-- field 1 -->
+    <g font-family="'JetBrains Mono', 'DejaVu Sans Mono', monospace">
+      <text x="100" y="465" font-size="18" fill="#5A6F60">// 01 · name</text>
+      <text x="100" y="525" font-size="46" fill="#F2F3F5" font-weight="700">
+        <tspan fill="#00E37F">▌</tspan> Durian Pavel
+      </text>
+      <line x1="100" y1="555" x2="980" y2="555" stroke="#33343C"/>
+    </g>
+
+    <!-- field 2 -->
+    <g font-family="'JetBrains Mono', 'DejaVu Sans Mono', monospace">
+      <text x="100" y="610" font-size="18" fill="#5A6F60">// 02 · ticker</text>
+      <text x="100" y="670" font-size="46" fill="#F2F3F5" font-weight="700">
+        <tspan fill="#33B0F0">$</tspan>DURIAN
+      </text>
+      <line x1="100" y1="700" x2="980" y2="700" stroke="#33343C"/>
+    </g>
+
+    <!-- field 3 -->
+    <g font-family="'JetBrains Mono', 'DejaVu Sans Mono', monospace">
+      <text x="100" y="755" font-size="18" fill="#5A6F60">// 03 · pitch (1 line)</text>
+      <text x="100" y="815" font-size="34" fill="#F2F3F5">the meme pavel deserves</text>
+      <line x1="100" y1="850" x2="980" y2="850" stroke="#33343C"/>
+    </g>
+
+    <!-- cost row -->
+    <g font-family="'JetBrains Mono', 'DejaVu Sans Mono', monospace" font-size="18">
+      <text x="100" y="905" fill="#7C8087">cost</text>
+      <text x="100" y="935" fill="#F2F3F5" font-size="22">~0.3 TON</text>
+
+      <text x="380" y="905" fill="#7C8087">sign</text>
+      <text x="380" y="935" fill="#F2F3F5" font-size="22">once</text>
+
+      <text x="600" y="905" fill="#7C8087">live in</text>
+      <text x="600" y="935" fill="#00E37F" font-size="22">~6 seconds</text>
+    </g>
+
+    <!-- big deploy button -->
+    <rect x="100" y="970" width="880" height="0" fill="none"/>
+    <g>
+      <rect x="100" y="945" width="880" height="0" fill="none"/>
+    </g>
+  </g>
+
+  <!-- deploy CTA outside panel -->
+  <g>
+    <rect x="60" y="1020" width="960" height="100" fill="#0098EA" rx="6"/>
+    <text x="540.0" y="1085" text-anchor="middle"
+          font-family="'Inter', 'DejaVu Sans', sans-serif" font-weight="800" font-size="42" fill="#0A0A0B" letter-spacing="-1">
+      deploy $DURIAN  →
+    </text>
+  </g>
+
+  <!-- assurance line -->
+  <g font-family="'JetBrains Mono', 'DejaVu Sans Mono', monospace" font-size="18" letter-spacing="0.5" text-anchor="middle">
+    <text x="540.0" y="1175" fill="#7C8087">no compiler  ·  no whitepaper  ·  the contract is forever</text>
+  </g>
+
+  
+    <g font-family="'JetBrains Mono', 'DejaVu Sans Mono', monospace" font-size="20" letter-spacing="0.5">
+      <line x1="60" y1="1250" x2="1020" y2="1250" stroke="#22232A" stroke-width="1"/>
+      <text x="60" y="1290" fill="#F2F3F5">
+        <tspan fill="#00E37F">▌</tspan> jettonpad.fun/create
+      </text>
+      <text x="1020" y="1290" text-anchor="end" fill="#7C8087">→ ship in 3 fields</text>
+    </g>
+    
+</svg>

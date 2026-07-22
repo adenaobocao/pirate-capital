@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1350" width="1080" height="1350">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#22232A" stroke-width="0.5" opacity="0.35"/>
+    </pattern>
+    <pattern id="dotgrid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.8" fill="#33343C" opacity="0.6"/>
+    </pattern>
+    <linearGradient id="tonfade" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0098EA" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#0098EA" stop-opacity="0"/>
+    </linearGradient>
+    
+  </defs>
+  <rect width="1080" height="1350" fill="#0A0A0B"/>
+  
+    <g font-family="'JetBrains Mono', 'DejaVu Sans Mono', monospace" font-size="20" letter-spacing="0.5">
+      <text x="60" y="60" fill="#5A6F60">// 01 — the pitch</text>
+      <text x="1020" y="60" text-anchor="end" fill="#7C8087">jettonpad.fun</text>
+      <line x1="60" y1="80" x2="1020" y2="80" stroke="#22232A" stroke-width="1"/>
+    </g>
+    
+  
+  <!-- terminal preamble -->
+  <g font-family="'JetBrains Mono', 'DejaVu Sans Mono', monospace" font-size="22">
+    <text x="60" y="170" fill="#7C8087">~/jettonpad-cli</text>
+    <text x="60" y="210" fill="#F2F3F5">
+      <tspan fill="#00E37F">$</tspan> launch.create()
+    </text>
+    <text x="60" y="240" fill="#5A6F60">// if it pumps it pumps</text>
+  </g>
+
+  <!-- HERO: "ship." massive lowercase -->
+  <g font-family="'Inter', 'DejaVu Sans', sans-serif" font-weight="900" letter-spacing="-12">
+    <text x="60" y="560" font-size="340" fill="#0098EA">ship.</text>
+  </g>
+
+  <!-- subhead -->
+  <g font-family="'Inter', 'DejaVu Sans', sans-serif" font-weight="400" font-size="64" letter-spacing="-2">
+    <text x="60" y="680" fill="#F2F3F5">your meme coin</text>
+    <text x="60" y="752" fill="#F2F3F5">before someone</text>
+    <text x="60" y="824" fill="#7C8087">else does.</text>
+  </g>
+
+  <!-- horizontal divider -->
+  <line x1="60" y1="900" x2="1020" y2="900" stroke="#33343C" stroke-width="1"/>
+
+  <!-- stats strip: 3 columns -->
+  <g font-family="'JetBrains Mono', 'DejaVu Sans Mono', monospace">
+    <!-- col 1 -->
+    <text x="60"  y="960"  font-size="20" fill="#5A6F60">// deployed</text>
+    <text x="60"  y="1030" font-size="56" fill="#F2F3F5" font-weight="700">1,289</text>
+    <text x="60"  y="1066" font-size="18" fill="#7C8087">tokens · since launch</text>
+
+    <!-- col 2 -->
+    <text x="430" y="960"  font-size="20" fill="#5A6F60">// volume</text>
+    <text x="430" y="1030" font-size="56" fill="#00E37F" font-weight="700">342k</text>
+    <text x="430" y="1066" font-size="18" fill="#7C8087">TON · last 24h</text>
+
+    <!-- col 3 -->
+    <text x="780" y="960"  font-size="20" fill="#5A6F60">// graduated</text>
+    <text x="780" y="1030" font-size="56" fill="#33B0F0" font-weight="700">47</text>
+    <text x="780" y="1066" font-size="18" fill="#7C8087">live · on DeDust</text>
+  </g>
+
+  <!-- big tag line above footer -->
+  <g font-family="'JetBrains Mono', 'DejaVu Sans Mono', monospace" font-size="22" letter-spacing="1">
+    <text x="60" y="1170" fill="#F2F3F5">
+      no compiler<tspan fill="#3F454D"> · </tspan>no whitepaper<tspan fill="#3F454D"> · </tspan>no gas to cry about
+    </text>
+  </g>
+
+  
+    <g font-family="'JetBrains Mono', 'DejaVu Sans Mono', monospace" font-size="20" letter-spacing="0.5">
+      <line x1="60" y1="1250" x2="1020" y2="1250" stroke="#22232A" stroke-width="1"/>
+      <text x="60" y="1290" fill="#F2F3F5">
+        <tspan fill="#00E37F">▌</tspan> jettonpad.fun
+      </text>
+      <text x="1020" y="1290" text-anchor="end" fill="#7C8087">→ pump.fun but for TON</text>
+    </g>
+    
+</svg>

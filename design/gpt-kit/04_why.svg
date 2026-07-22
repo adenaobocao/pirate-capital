@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1350" width="1080" height="1350">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#22232A" stroke-width="0.5" opacity="0.35"/>
+    </pattern>
+    <pattern id="dotgrid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.8" fill="#33343C" opacity="0.6"/>
+    </pattern>
+    <linearGradient id="tonfade" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0098EA" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#0098EA" stop-opacity="0"/>
+    </linearGradient>
+    
+  </defs>
+  <rect width="1080" height="1350" fill="#0A0A0B"/>
+  
+    <g font-family="'JetBrains Mono', 'DejaVu Sans Mono', monospace" font-size="20" letter-spacing="0.5">
+      <text x="60" y="60" fill="#5A6F60">// 04 — why TON</text>
+      <text x="1020" y="60" text-anchor="end" fill="#7C8087">jettonpad.fun</text>
+      <line x1="60" y1="80" x2="1020" y2="80" stroke="#22232A" stroke-width="1"/>
+    </g>
+    
+  
+  <!-- preamble -->
+  <g font-family="'JetBrains Mono', 'DejaVu Sans Mono', monospace">
+    <text x="60" y="170" font-size="20" fill="#5A6F60">// reason no. 01</text>
+    <text x="60" y="220" font-size="34" fill="#7C8087" letter-spacing="-0.5">why TON?</text>
+  </g>
+
+  <!-- HERO number -->
+  <g font-family="'Inter', 'DejaVu Sans', sans-serif" font-weight="900" letter-spacing="-18">
+    <text x="60" y="540" font-size="380" fill="#F2F3F5">950</text>
+    <text x="700" y="540" font-size="380" fill="#0098EA">m</text>
+  </g>
+
+  <!-- subhead -->
+  <g font-family="'Inter', 'DejaVu Sans', sans-serif" font-weight="500">
+    <text x="60" y="640" font-size="56" fill="#F2F3F5" letter-spacing="-2">telegram users.</text>
+  </g>
+
+  <!-- divider with annotation -->
+  <line x1="60" y1="700" x2="1020" y2="700" stroke="#33343C"/>
+
+  <!-- explanation block -->
+  <g font-family="'JetBrains Mono', 'DejaVu Sans Mono', monospace" font-size="22" letter-spacing="-0.2">
+    <text x="60" y="760" fill="#F2F3F5">every wallet is one tap</text>
+    <text x="60" y="794" fill="#F2F3F5">away from a chat.</text>
+    <text x="60" y="850" fill="#7C8087">that's the entire</text>
+    <text x="60" y="884" fill="#7C8087">onboarding flow.</text>
+    <text x="60" y="940" fill="#00E37F">solana wishes.</text>
+  </g>
+
+  <!-- secondary reasons in 3-col grid -->
+  <g>
+    <line x1="60" y1="1020" x2="1020" y2="1020" stroke="#22232A"/>
+    <line x1="60" y1="1180" x2="1020" y2="1180" stroke="#22232A"/>
+
+    <!-- col 1 -->
+    <g font-family="'JetBrains Mono', 'DejaVu Sans Mono', monospace">
+      <text x="80"  y="1062" font-size="16" fill="#5A6F60">// reason 02</text>
+      <text x="80"  y="1110" font-size="32" fill="#F2F3F5" font-weight="700">~free</text>
+      <text x="80"  y="1145" font-size="16" fill="#7C8087">gas. trades cost cents.</text>
+    </g>
+    <line x1="380" y1="1030" x2="380" y2="1170" stroke="#22232A"/>
+
+    <!-- col 2 -->
+    <g font-family="'JetBrains Mono', 'DejaVu Sans Mono', monospace">
+      <text x="400" y="1062" font-size="16" fill="#5A6F60">// reason 03</text>
+      <text x="400" y="1110" font-size="32" fill="#F2F3F5" font-weight="700">instant</text>
+      <text x="400" y="1145" font-size="16" fill="#7C8087">finality. trade lands first.</text>
+    </g>
+    <line x1="700" y1="1030" x2="700" y2="1170" stroke="#22232A"/>
+
+    <!-- col 3 -->
+    <g font-family="'JetBrains Mono', 'DejaVu Sans Mono', monospace">
+      <text x="720" y="1062" font-size="16" fill="#5A6F60">// reason 04</text>
+      <text x="720" y="1110" font-size="32" fill="#0098EA" font-weight="700">us.</text>
+      <text x="720" y="1145" font-size="16" fill="#7C8087">the meme infra is mid.</text>
+    </g>
+  </g>
+
+  
+    <g font-family="'JetBrains Mono', 'DejaVu Sans Mono', monospace" font-size="20" letter-spacing="0.5">
+      <line x1="60" y1="1250" x2="1020" y2="1250" stroke="#22232A" stroke-width="1"/>
+      <text x="60" y="1290" fill="#F2F3F5">
+        <tspan fill="#00E37F">▌</tspan> jettonpad.fun
+      </text>
+      <text x="1020" y="1290" text-anchor="end" fill="#7C8087">→ built by degens · for degens</text>
+    </g>
+    
+</svg>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1350" width="1080" height="1350">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#22232A" stroke-width="0.5" opacity="0.35"/>
+    </pattern>
+    <pattern id="dotgrid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.8" fill="#33343C" opacity="0.6"/>
+    </pattern>
+    <linearGradient id="tonfade" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0098EA" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#0098EA" stop-opacity="0"/>
+    </linearGradient>
+    
+  </defs>
+  <rect width="1080" height="1350" fill="#0A0A0B"/>
+  
+    <g font-family="'JetBrains Mono', 'DejaVu Sans Mono', monospace" font-size="20" letter-spacing="0.5">
+      <text x="60" y="60" fill="#5A6F60">// 03 — bonding curve</text>
+      <text x="1020" y="60" text-anchor="end" fill="#7C8087">jettonpad.fun</text>
+      <line x1="60" y1="80" x2="1020" y2="80" stroke="#22232A" stroke-width="1"/>
+    </g>
+    
+  
+  <!-- preamble -->
+  <g font-family="'JetBrains Mono', 'DejaVu Sans Mono', monospace" font-size="20">
+    <text x="60" y="170" fill="#5A6F60">// math.bonding_curve</text>
+    <text x="60" y="210" fill="#F2F3F5" font-size="34" font-weight="600">y = k / (x + 1)</text>
+    <text x="60" y="245" fill="#7C8087">every trade routes through the curve.</text>
+  </g>
+
+  <!-- big graduation stat top right -->
+  <g font-family="'Inter', 'DejaVu Sans', sans-serif" text-anchor="end">
+    <text x="1020" y="180" font-size="20" font-family="'JetBrains Mono', 'DejaVu Sans Mono', monospace" fill="#5A6F60">// graduation</text>
+    <text x="1020" y="240" font-size="64" font-weight="800" fill="#00E37F" letter-spacing="-2">$69k</text>
+    <text x="1020" y="270" font-size="18" font-family="'JetBrains Mono', 'DejaVu Sans Mono', monospace" fill="#7C8087">→ live on DeDust</text>
+  </g>
+
+  <!-- chart area background grid -->
+  <rect x="60" y="360" width="960" height="600" fill="#111113" stroke="#22232A" rx="4"/>
+  <g opacity="0.5">
+    <!-- horizontal grid lines -->
+    <line x1="60" y1="510" x2="1020" y2="510" stroke="#22232A" stroke-dasharray="2 4"/>
+    <line x1="60" y1="660" x2="1020" y2="660" stroke="#22232A" stroke-dasharray="2 4"/>
+    <line x1="60" y1="810" x2="1020" y2="810" stroke="#22232A" stroke-dasharray="2 4"/>
+    <!-- vertical grid lines -->
+    <line x1="300" y1="360" x2="300" y2="960" stroke="#22232A" stroke-dasharray="2 4"/>
+    <line x1="540" y1="360" x2="540" y2="960" stroke="#22232A" stroke-dasharray="2 4"/>
+    <line x1="780" y1="360" x2="780" y2="960" stroke="#22232A" stroke-dasharray="2 4"/>
+  </g>
+
+  <!-- y axis label -->
+  <g font-family="'JetBrains Mono', 'DejaVu Sans Mono', monospace" font-size="16" fill="#7C8087">
+    <text x="72" y="384">↑ price</text>
+    <text x="1008" y="948" text-anchor="end">supply →</text>
+  </g>
+
+  <!-- filled area under curve -->
+  <path d="M 60.0 960.0 L 72.0 958.5 L 84.0 956.9 L 96.0 955.3 L 108.0 953.7 L 120.0 951.9 L 132.0 950.2 L 144.0 948.3 L 156.0 946.4 L 168.0 944.5 L 180.0 942.4 L 192.0 940.3 L 204.0 938.2 L 216.0 936.0 L 228.0 933.7 L 240.0 931.3 L 252.0 928.8 L 264.0 926.3 L 276.0 923.6 L 288.0 920.9 L 300.0 918.1 L 312.0 915.2 L 324.0 912.2 L 336.0 909.2 L 348.0 906.0 L 360.0 902.7 L 372.0 899.3 L 384.0 895.8 L 396.0 892.1 L 408.0 888.4 L 420.0 884.5 L 432.0 880.5 L 444.0 876.3 L 456.0 872.1 L 468.0 867.7 L 480.0 863.1 L 492.0 858.4 L 504.0 853.5 L 516.0 848.5 L 528.0 843.3 L 540.0 837.9 L 552.0 832.4 L 564.0 826.7 L 576.0 820.7 L 588.0 814.6 L 600.0 808.3 L 612.0 801.8 L 624.0 795.1 L 636.0 788.1 L 648.0 780.9 L 660.0 773.5 L 672.0 765.8 L 684.0 757.9 L 696.0 749.7 L 708.0 741.2 L 720.0 732.5 L 732.0 723.5 L 744.0 714.2 L 756.0 704.5 L 768.0 694.6 L 780.0 684.3 L 792.0 673.7 L 804.0 662.7 L 816.0 651.4 L 828.0 639.7 L 840.0 627.6 L 852.0 615.1 L 864.0 602.2 L 876.0 588.8 L 888.0 575.1 L 900.0 560.8 L 912.0 546.2 L 924.0 531.0 L 936.0 515.3 L 948.0 499.1 L 960.0 482.3 L 972.0 465.1 L 984.0 447.2 L 996.0 428.7 L 1008.0 409.7 L 1020.0 390.0 L 1020.0 960 L 60.0 960 Z" fill="url(#tonfade)"/>
+
+  <!-- the curve itself -->
+  <path d="M 60.0 960.0 L 72.0 958.5 L 84.0 956.9 L 96.0 955.3 L 108.0 953.7 L 120.0 951.9 L 132.0 950.2 L 144.0 948.3 L 156.0 946.4 L 168.0 944.5 L 180.0 942.4 L 192.0 940.3 L 204.0 938.2 L 216.0 936.0 L 228.0 933.7 L 240.0 931.3 L 252.0 928.8 L 264.0 926.3 L 276.0 923.6 L 288.0 920.9 L 300.0 918.1 L 312.0 915.2 L 324.0 912.2 L 336.0 909.2 L 348.0 906.0 L 360.0 902.7 L 372.0 899.3 L 384.0 895.8 L 396.0 892.1 L 408.0 888.4 L 420.0 884.5 L 432.0 880.5 L 444.0 876.3 L 456.0 872.1 L 468.0 867.7 L 480.0 863.1 L 492.0 858.4 L 504.0 853.5 L 516.0 848.5 L 528.0 843.3 L 540.0 837.9 L 552.0 832.4 L 564.0 826.7 L 576.0 820.7 L 588.0 814.6 L 600.0 808.3 L 612.0 801.8 L 624.0 795.1 L 636.0 788.1 L 648.0 780.9 L 660.0 773.5 L 672.0 765.8 L 684.0 757.9 L 696.0 749.7 L 708.0 741.2 L 720.0 732.5 L 732.0 723.5 L 744.0 714.2 L 756.0 704.5 L 768.0 694.6 L 780.0 684.3 L 792.0 673.7 L 804.0 662.7 L 816.0 651.4 L 828.0 639.7 L 840.0 627.6 L 852.0 615.1 L 864.0 602.2 L 876.0 588.8 L 888.0 575.1 L 900.0 560.8 L 912.0 546.2 L 924.0 531.0 L 936.0 515.3 L 948.0 499.1 L 960.0 482.3 L 972.0 465.1 L 984.0 447.2 L 996.0 428.7 L 1008.0 409.7 L 1020.0 390.0 " fill="none" stroke="#0098EA" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- seed marker -->
+  <g>
+    <circle cx="84.0" cy="956.9286386001145" r="8" fill="#0A0A0B" stroke="#33B0F0" stroke-width="3"/>
+    <line x1="84.0" y1="956.9286386001145" x2="114.0" y2="896.9286386001145" stroke="#33B0F0" stroke-width="1"/>
+    <g font-family="'JetBrains Mono', 'DejaVu Sans Mono', monospace" font-size="18">
+      <text x="122.0" y="890.9286386001145" fill="#5A6F60">// seed</text>
+      <text x="122.0" y="914.9286386001145" fill="#F2F3F5" font-weight="700" font-size="22">$420 mcap</text>
+    </g>
+  </g>
+
+  <!-- midpoint marker -->
+  <g>
+    <circle cx="720.0" cy="732.5029531318644" r="6" fill="#0098EA" stroke="#0A0A0B" stroke-width="2"/>
+    <line x1="720.0" y1="732.5029531318644" x2="670.0" y2="822.5029531318644" stroke="#0098EA" stroke-width="1" opacity="0.5"/>
+    <g font-family="'JetBrains Mono', 'DejaVu Sans Mono', monospace" font-size="16">
+      <text x="660.0" y="837.5029531318644" text-anchor="end" fill="#5A6F60">// graduation trigger</text>
+      <text x="660.0" y="860.5029531318644" text-anchor="end" fill="#F2F3F5" font-weight="600">~$5k volume</text>
+    </g>
+  </g>
+
+  <!-- graduation marker -->
+  <g>
+    <circle cx="996.0" cy="428.74961871098606" r="14" fill="#00E37F" opacity="0.2"/>
+    <circle cx="996.0" cy="428.74961871098606" r="9"  fill="#00E37F" stroke="#0A0A0B" stroke-width="2"/>
+    <g font-family="'JetBrains Mono', 'DejaVu Sans Mono', monospace" font-size="18">
+      <text x="976.0" y="398.74961871098606" text-anchor="end" fill="#00E37F" font-weight="700" font-size="22">$69k</text>
+      <text x="976.0" y="420.74961871098606"  text-anchor="end" fill="#7C8087">→ DeDust</text>
+    </g>
+  </g>
+
+  <!-- bottom flow strip -->
+  <g font-family="'JetBrains Mono', 'DejaVu Sans Mono', monospace" font-size="22" letter-spacing="0.5">
+    <text x="540.0" y="1085" text-anchor="middle" fill="#F2F3F5">
+      seed <tspan fill="#0098EA">»</tspan> trade <tspan fill="#0098EA">»</tspan> graduate <tspan fill="#0098EA">»</tspan> <tspan fill="#00E37F">DeDust</tspan>
+    </text>
+    <text x="540.0" y="1135" text-anchor="middle" fill="#7C8087" font-size="18">
+      auto. no committee. no kyc. no permission.
+    </text>
+  </g>
+
+  <!-- formula at bottom strip -->
+  <g font-family="'JetBrains Mono', 'DejaVu Sans Mono', monospace" font-size="16">
+    <text x="60" y="1200" fill="#5A6F60">// every jetton starts at $420 — graduates at ~$5k volume — mcap ≈ $69k at exit</text>
+  </g>
+
+  
+    <g font-family="'JetBrains Mono', 'DejaVu Sans Mono', monospace" font-size="20" letter-spacing="0.5">
+      <line x1="60" y1="1250" x2="1020" y2="1250" stroke="#22232A" stroke-width="1"/>
+      <text x="60" y="1290" fill="#F2F3F5">
+        <tspan fill="#00E37F">▌</tspan> jettonpad.fun
+      </text>
+      <text x="1020" y="1290" text-anchor="end" fill="#7C8087">→ if it pumps it pumps</text>
+    </g>
+    
+</svg>

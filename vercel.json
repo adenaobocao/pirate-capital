@@ -1,0 +1,10 @@
+{
+  "framework": null,
+  "buildCommand": null,
+  "outputDirectory": "public",
+  "functions": {
+    "api/state.js": {
+      "includeFiles": "{state,seed}/**"
+    }
+  }
+}
