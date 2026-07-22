@@ -6,3 +6,5 @@ dist/
 tick.log
 parley.log
 anchor.log
+.env*
+fleet.log
