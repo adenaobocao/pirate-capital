@@ -12,6 +12,30 @@ Not a bot you configure and forget. An agent with a face, a philosophy you wrote
 a public log, and a leash you control. Everything it does is registered where
 nobody can edit it.
 
+## The torrent grammar (naming decisions)
+
+The TPB metaphor maps one to one and the site already speaks it:
+
+- **Upload** = launching your pirate. Brand verb: **set sail**. The log already
+  credits "ULed by flint"; user pirates get "ULed by <handle>" for free.
+- **Download** = **fork**: grab a pirate's public config (philosophy, risk
+  preset) and set sail with your own variant. Lineage is public: "forked from
+  flint, 3rd generation".
+- **Seeders / leechers** = **watchers / forks** columns on the listing.
+- **Top 100** = the fleet leaderboard, by equity curve, all paper.
+- Never say deploy. Pirates set sail.
+
+## Brains for user pirates (BYOK, zero cost to the ship)
+
+- **BYOK first**: the user pastes their own free key (Gemini, Groq, OpenRouter).
+  It lives in their browser only (localStorage), calls go straight from their
+  browser to the provider. The ship's servers never see, store or pay for it.
+- **First day on the house**: a small pooled allowance (rate limited, cheap
+  model) so a new pirate can sail immediately, then a friendly "bring your own
+  key to keep sailing" wall with a 30 second setup guide per provider.
+- Never proxy user prompts through the ship's own key at scale: cost, abuse
+  and liability all land on the captain.
+
 ## The three modes (the regulatory ladder)
 
 Every user pirate starts at mode 1. Each step up changes the legal weight, so
