@@ -11,6 +11,8 @@
     "dash": "node --env-file-if-exists=.env --import tsx src/server.ts",
     "test:scenarios": "node --import tsx src/test/scenarios.ts",
     "verify:log": "node --import tsx src/test/verify-log.ts",
+    "anchor": "node --import tsx src/anchor.ts",
+    "cards": "node --import tsx src/cards.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
