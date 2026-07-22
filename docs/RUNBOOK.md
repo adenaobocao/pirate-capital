@@ -33,10 +33,22 @@ npm run tick         # real tick with whatever brain is configured
 npm run tick -- --agent flint    # tick a single pirate
 ```
 
-Hourly cron (the standard cadence):
+The heartbeat is INSTALLED in the user crontab (see `crontab -l`), via
+`scripts/cron-tick.sh` (hourly: tick, regenerate cards, redeploy prod),
+`scripts/cron-parley.sh` (13:00 new topic, 18:00 and 23:00 continue the
+newest thread) and `scripts/cron-anchor.sh` (23:30: verify the chain, append
+the head hash to ANCHORS.md, commit the audit trail and push).
+
+macOS note: cron does not fire while the mac sleeps. Keep it awake
+(`caffeinate -s`, Amphetamine, or plugged in with sleep off) or accept holes
+in the curve. Missed ticks are just missed; nothing breaks.
+
+Extra commands:
 
 ```
-0 * * * * cd /Users/adrianolourenco/pirate-capital && npm run tick >> tick.log 2>&1
+npm run cards        # regenerate shareable trade cards into public/cards/
+npm run anchor       # verify chain + append head hash to ANCHORS.md
+npm run verify:log   # re-walk the whole hash chain
 ```
 
 Reset the experiment (all chests back to $1,000, log erased):
