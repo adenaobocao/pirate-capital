@@ -147,7 +147,43 @@ Swap path to build (SwapRouter02, simplest safe route):
    ETH->USDG uses tokenIn=WETH with msg.value (SwapRouter02 wraps).
 Confirm the WETH/USDG and USDG/<stock> pool fee tiers (500/3000/10000) exist before use.
 
-## CRITICAL BLOCKER: stock-token swaps require an off-chain signed price
+## RESOLVED: stock swaps ARE doable by code, via an aggregator RFQ API
+
+The "blocker" below is real but NOT a wall. Research (well-sourced) resolved it:
+
+- The settlement contract 0x000000007A1C8e570011EeDF86A2A35593013cBA is a
+  **UniswapX V3DutchOrderReactor**. Stock tokens trade via **RFQ / intent
+  (UniswapX-style)**, not a spot AMM. That is why the plain router failed.
+- The 65-byte signature is a **cosigner signature** on a Dutch/RFQ order. You do
+  NOT compute it; you REQUEST it from a quote/auction API, exactly like the UI.
+- **Robinhood Chain docs explicitly invite agents:** "Developers and agents can
+  integrate instantly with standard EVM tooling" and "RFQ uses signed
+  market-maker quotes sourced through aggregators such as **0x RFQ, 1inch Fusion,
+  and LiFi**." (docs.robinhood.com/chain/building-with-stock-tokens/)
+- **1inch is confirmed live on Robinhood Chain** (business.1inch.com/chains/robinhood):
+  Business Swap API + gasless swap.
+
+### The real executor path (this is what to build)
+
+Bot flow per stock trade:
+1. GET a quote from an aggregator RFQ API live on RH Chain (1inch or 0x), passing
+   sellToken=USDG, buyToken=<stock>, amount, taker=pirate wallet, chainId 4663.
+2. The API returns an EXECUTABLE quote: ready calldata (or a SignedOrder with the
+   cosigned price = the 65-byte sig) plus the target (the reactor / settler).
+3. The bot EIP-712 / Permit2-signs its side, then broadcasts (or submits to the
+   filler network). Same pattern as GMGN (Solana): get route -> sign -> submit.
+
+Caveats (from research, verify when building):
+- Needs an aggregator API key (1inch/0x/Uniswap Trading API) - keyed, not anonymous,
+  but self-serve/obtainable. Not the Robinhood Agentic MCP (that is US-only custodial equities).
+- Exact quote host not byte-confirmed; test one real quote before wiring.
+- Crypto legs (ETH<->USDG) still go through the plain router, no signature.
+
+Chosen path: **1inch Business Swap API on RH Chain** (confirmed live) as the
+signed-quote source. Next: get a 1inch (or 0x) API key, then build the executor
+to fetch quote -> sign -> broadcast, test on the canary.
+
+## (historical) CRITICAL BLOCKER: stock-token swaps require an off-chain signed price
 
 Decoded a real USDG->NVDA swap the owner did via the Uniswap UI (tx
 0x9d3aed9d..., from the Ledger EOA). It does NOT call the plain router. It calls
