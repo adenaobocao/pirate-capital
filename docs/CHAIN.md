@@ -147,7 +147,39 @@ Swap path to build (SwapRouter02, simplest safe route):
    ETH->USDG uses tokenIn=WETH with msg.value (SwapRouter02 wraps).
 Confirm the WETH/USDG and USDG/<stock> pool fee tiers (500/3000/10000) exist before use.
 
-## DECISIVE: liquidity is Uniswap V4, and autonomous swaps are feasible
+## CRITICAL BLOCKER: stock-token swaps require an off-chain signed price
+
+Decoded a real USDG->NVDA swap the owner did via the Uniswap UI (tx
+0x9d3aed9d..., from the Ledger EOA). It does NOT call the plain router. It calls
+an unverified wrapper 0x09e99d23bf226a6c6b4c2126239a3df3ca1b89b6 with
+`execute(address to, (bytes,bytes) payload, bytes extra)`, which:
+- forwards to a settlement contract 0x000000007A1C8e570011EeDF86A2A35593013cBA
+- carries a **65-byte ECDSA signature** (payload.b = r+s+v) over a price/intent
+- plus an `extra` blob encoding the swap params (USDG address visible in it)
+
+Meaning: every STOCK-token trade needs a price attestation signed by Robinhood/
+Uniswap's authorized signer, produced by their UI/backend. A third-party
+autonomous bot cannot forge it.
+
+Contrast: the owner's ETH->USDG swap (tx 0x0f7f44d5) went through the plain
+UniversalRouter with standard `execute(bytes,bytes[],uint256)` and NO signature.
+So CRYPTO swaps are autonomous; STOCK swaps are gated by a signed price.
+
+### Consequence for the plan
+
+Fully autonomous onchain trading of STOCK tokens is NOT possible as-is without
+access to the price-signing API. This is an architecture-level constraint, not a
+coding gap. Resolve before committing the $400 + token:
+- Investigate whether the signing endpoint (the Uniswap UI calls it per swap) is
+  reachable by a bot (inspect the UI's network requests). If yes, the bot fetches
+  the signature per trade and the plan holds.
+- If not: options are (a) trade CRYPTO onchain (autonomous, works), (b) keep the
+  stock pirates on paper against real prices (honest, still the product) and prove
+  real money on a crypto sleeve, (c) rethink the venue.
+
+The $50 canary test already paid for itself: it surfaced this before the $400.
+
+## DECISIVE: liquidity is Uniswap V4, and autonomous swaps are feasible (crypto)
 
 Verified on-chain 2026-07-22:
 - NO Uniswap V3 pools exist for USDG/NVDA (all fee tiers) or WETH/USDG. The V3
