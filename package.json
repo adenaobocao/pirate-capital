@@ -14,11 +14,14 @@
     "anchor": "node --import tsx src/anchor.ts",
     "cards": "node --import tsx src/cards.ts",
     "fleet:tick": "node --env-file-if-exists=.env --env-file-if-exists=.env.local --import tsx src/fleet-tick.ts",
+    "wallets:gen": "node --import tsx src/chain/wallets.ts gen",
+    "wallets:show": "node --import tsx src/chain/wallets.ts show",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.112.5",
-    "@vercel/blob": "^2.6.1"
+    "@vercel/blob": "^2.6.1",
+    "viem": "^2.55.7"
   },
   "devDependencies": {
     "@types/node": "^26.1.1",

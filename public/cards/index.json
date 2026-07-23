@@ -1,5 +1,47 @@
 [
   {
+    "file": "ledger-2026-07-23T00-05-02-228Z.svg",
+    "pirate": "ledger",
+    "ts": "2026-07-23T00:05:02.228Z",
+    "ticker": "AAPL",
+    "action": "buy"
+  },
+  {
+    "file": "crow-2026-07-23T00-05-02-228Z.svg",
+    "pirate": "crow",
+    "ts": "2026-07-23T00:05:02.228Z",
+    "ticker": "COIN",
+    "action": "buy"
+  },
+  {
+    "file": "crow-2026-07-23T00-05-02-228Z.svg",
+    "pirate": "crow",
+    "ts": "2026-07-23T00:05:02.228Z",
+    "ticker": "PLTR",
+    "action": "sell"
+  },
+  {
+    "file": "cannon-2026-07-23T00-05-02-228Z.svg",
+    "pirate": "cannon",
+    "ts": "2026-07-23T00:05:02.228Z",
+    "ticker": "NVDA",
+    "action": "buy"
+  },
+  {
+    "file": "cannon-2026-07-23T00-05-02-228Z.svg",
+    "pirate": "cannon",
+    "ts": "2026-07-23T00:05:02.228Z",
+    "ticker": "AAPL",
+    "action": "buy"
+  },
+  {
+    "file": "flint-2026-07-23T00-05-02-228Z.svg",
+    "pirate": "flint",
+    "ts": "2026-07-23T00:05:02.228Z",
+    "ticker": "MSTR",
+    "action": "buy"
+  },
+  {
     "file": "ledger-2026-07-22T23-26-23-969Z.svg",
     "pirate": "ledger",
     "ts": "2026-07-22T23:26:23.969Z",
@@ -63,20 +105,6 @@
     "action": "buy"
   },
   {
-    "file": "cannon-2026-07-22T23-08-45-334Z.svg",
-    "pirate": "cannon",
-    "ts": "2026-07-22T23:08:45.334Z",
-    "ticker": "META",
-    "action": "buy"
-  },
-  {
-    "file": "cannon-2026-07-22T23-08-45-334Z.svg",
-    "pirate": "cannon",
-    "ts": "2026-07-22T23:08:45.334Z",
-    "ticker": "AAPL",
-    "action": "buy"
-  },
-  {
     "file": "flint-2026-07-22T23-08-45-334Z.svg",
     "pirate": "flint",
     "ts": "2026-07-22T23:08:45.334Z",
@@ -119,22 +147,8 @@
     "action": "sell"
   },
   {
-    "file": "ledger-2026-07-22T21-14-29-100Z.svg",
-    "pirate": "ledger",
-    "ts": "2026-07-22T21:14:29.100Z",
-    "ticker": "AMD",
-    "action": "buy"
-  },
-  {
     "file": "crow-2026-07-22T21-14-29-100Z.svg",
     "pirate": "crow",
-    "ts": "2026-07-22T21:14:29.100Z",
-    "ticker": "AMD",
-    "action": "buy"
-  },
-  {
-    "file": "flint-2026-07-22T21-14-29-100Z.svg",
-    "pirate": "flint",
     "ts": "2026-07-22T21:14:29.100Z",
     "ticker": "AMD",
     "action": "buy"
