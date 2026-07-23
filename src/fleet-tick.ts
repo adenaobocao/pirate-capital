@@ -96,7 +96,8 @@ async function main() {
 
   const now = Date.now();
   const due = index.pirates.filter(
-    (p: { lastTick: string | null }) => !p.lastTick || now - new Date(p.lastTick).getTime() >= COOLDOWN_MS,
+    (p: { lastTick: string | null; paused?: boolean; retired?: boolean }) =>
+      !p.paused && !p.retired && (!p.lastTick || now - new Date(p.lastTick).getTime() >= COOLDOWN_MS),
   );
   console.log(`\nTHE FLEET tick: ${due.length}/${index.pirates.length} pirates due (brain: ${brainId()})\n`);
   if (due.length === 0) return;

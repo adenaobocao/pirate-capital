@@ -1,3 +1,4 @@
+import crypto from "node:crypto";
 import {
   MAX_PIRATES,
   RISK_PRESETS,
@@ -11,6 +12,15 @@ import {
   writeJson,
 } from "./_fleet.js";
 import { gate, cacheFor } from "./_auth.js";
+
+/** Constant-time check that a boarding pass owns this pirate. */
+function ownsPirate(request, pirate) {
+  const token = request.headers.get("x-boarding-pass") || "";
+  const a = Buffer.from(hashToken(token));
+  const b = Buffer.from(pirate.tokenHash || "");
+  if (a.length !== b.length) return false;
+  return crypto.timingSafeEqual(a, b);
+}
 
 /**
  * The fleet, lookout mode (paper only, zero friction):
@@ -134,4 +144,54 @@ export async function POST(request) {
     token,
     note: "this is your boarding pass. save it. it is shown exactly once.",
   });
+}
+
+/**
+ * Manage a pirate you own. Prove ownership with the x-boarding-pass header.
+ *   PATCH /api/fleet?id=  {paused:true|false}   pause or resume trading
+ *   DELETE /api/fleet?id=                       retire it (leaves the board)
+ */
+export async function PATCH(request) {
+  const closed = gate(request);
+  if (closed) return closed;
+
+  const url = new URL(request.url);
+  const id = url.searchParams.get("id");
+  if (!id || !/^[a-z0-9_-]{3,40}$/.test(id)) return json({ error: "bad id" }, 400);
+  const pirate = await readJson(`fleet/pirates/${id}.json`);
+  if (!pirate) return json({ error: "no such pirate" }, 404);
+  if (!ownsPirate(request, pirate)) return json({ error: "wrong boarding pass" }, 403);
+
+  let body;
+  try { body = await request.json(); } catch { return json({ error: "bad json" }, 400); }
+  pirate.paused = Boolean(body.paused);
+  await writeJson(`fleet/pirates/${id}.json`, pirate);
+
+  const index = (await readJson(INDEX)) ?? { pirates: [] };
+  const entry = index.pirates.find((p) => p.id === id);
+  if (entry) { entry.paused = pirate.paused; await writeJson(INDEX, index); }
+
+  return json({ ok: true, id, paused: pirate.paused });
+}
+
+export async function DELETE(request) {
+  const closed = gate(request);
+  if (closed) return closed;
+
+  const url = new URL(request.url);
+  const id = url.searchParams.get("id");
+  if (!id || !/^[a-z0-9_-]{3,40}$/.test(id)) return json({ error: "bad id" }, 400);
+  const pirate = await readJson(`fleet/pirates/${id}.json`);
+  if (!pirate) return json({ error: "no such pirate" }, 404);
+  if (!ownsPirate(request, pirate)) return json({ error: "wrong boarding pass" }, 403);
+
+  pirate.retired = true;
+  pirate.retiredAt = new Date().toISOString();
+  await writeJson(`fleet/pirates/${id}.json`, pirate);
+
+  const index = (await readJson(INDEX)) ?? { pirates: [] };
+  index.pirates = index.pirates.filter((p) => p.id !== id);
+  await writeJson(INDEX, index);
+
+  return json({ ok: true, retired: id });
 }

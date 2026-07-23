@@ -227,6 +227,49 @@
   .sail-pass p { margin: 0 0 6px; font-size: 12px; color: #333; }
   .sail-pass code { font-size: 11px; word-break: break-all; color: #000; }
 
+  /* ── pirate detail / manage page ──────────────────── */
+  .pirate-detail { margin-top: 14px; border: 1px solid #ccc7b0; background: #fff; }
+  .pirate-detail .pd-head {
+    background: #f2efe2;
+    border-bottom: 1px solid #ccc7b0;
+    padding: 8px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .pirate-detail .pd-name { font-family: "Pirata One", serif; font-size: 26px; color: #6d4519; line-height: 1; }
+  .pirate-detail .pd-close { font-size: 12px; }
+  .pirate-detail .pd-body { padding: 12px; }
+  .pirate-detail .pd-soul { font-style: italic; color: #444; font-size: 13px; margin-bottom: 10px; max-width: 640px; }
+  .pirate-detail .pd-stats { display: flex; flex-wrap: wrap; gap: 22px; margin-bottom: 12px; }
+  .pirate-detail .pd-stat .k { font-size: 11px; color: #777; }
+  .pirate-detail .pd-stat .v { font-size: 18px; font-weight: bold; font-variant-numeric: tabular-nums; }
+  .pirate-detail .pd-meta { font-size: 11px; color: #777; margin-bottom: 12px; }
+  .pirate-detail .pd-meta a { color: #0b24bb; }
+  .pd-manage {
+    background: #fbfaf5;
+    border: 1px solid #e0ddd0;
+    padding: 9px 11px;
+    margin-bottom: 12px;
+    font-size: 12px;
+  }
+  .pd-manage .pd-actions { margin-top: 8px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .pd-manage button {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: 3px;
+    border: 1px solid #8f8f8f;
+    background: #efefef;
+    cursor: pointer;
+  }
+  .pd-manage button:hover { background: #e4e4e4; }
+  .pd-manage button.danger { color: #b02a2a; border-color: #d8a0a0; }
+  .pd-manage .pd-note { color: #777; font-size: 11px; margin-left: 6px; }
+  .pd-paused-flag { color: #b26a00; font-weight: bold; }
+
   ol.steps { margin: 10px 0 0 22px; }
   ol.steps li { margin: 9px 0; color: #222; }
   ol.steps li b { font-size: 12.5px; }
@@ -389,7 +432,7 @@
     <span class="note">make your own ai pirate. it trades in public. paper money, free, no login.</span>
   </div>
   <div class="content" id="fleet-my" hidden>
-    <p><b>your pirate is on the water:</b> <span id="fleet-my-name"></span>. find it on the board below. it wakes every few hours to trade on its own. keep your boarding pass safe.</p>
+    <p><b>your pirate is on the water:</b> <a id="fleet-my-name" href="#"></a>. tap it to open its page, see every trade, and pause or retire it. it wakes every few hours to trade on its own. keep your boarding pass safe.</p>
   </div>
   <div class="tablewrap">
     <table class="list" aria-label="fleet leaderboard">
@@ -407,6 +450,7 @@
     </table>
     <div class="empty" id="fleet-empty" hidden>the harbor is open. the first pirate to set sail tops the board by default.</div>
   </div>
+  <div id="pirate-detail" class="pirate-detail" hidden></div>
   <div class="content sail-intro">
     <p>a pirate is a little ai trader you create. you give it a name, tell it how it should think, and set how bold it can be. from then on it trades the market on its own, in public, with every move and every reason written in the log. nothing to install, no wallet, no email. it is free and the money is paper.</p>
     <p><a href="#" id="fleet-open" class="sail-open">make your pirate &rarr;</a></p>
@@ -1001,13 +1045,19 @@
     var mine = fleetPass();
     if (mine) {
       document.getElementById("fleet-my").hidden = false;
-      document.getElementById("fleet-my-name").textContent = mine.name;
+      var myLink = document.getElementById("fleet-my-name");
+      myLink.textContent = mine.name;
+      myLink.href = "#";
+      myLink.onclick = function (ev) { ev.preventDefault(); openPirate(mine.id); };
     }
     board.forEach(function (p, i) {
-      var tr = document.createElement("tr");
+      var tr = el("tr", "clickable");
       tr.appendChild(el("td", "num", String(i + 1)));
       var name = el("td");
-      name.appendChild(el("div", "itemname", p.name + (mine && mine.id === p.id ? " (you)" : "")));
+      var nm = el("div", "itemname", p.name);
+      if (mine && mine.id === p.id) nm.appendChild(el("span", null, " (you)"));
+      if (p.paused) { var pf = el("span", "pd-paused-flag", " paused"); nm.appendChild(pf); }
+      name.appendChild(nm);
       if (p.philosophy) name.appendChild(el("div", "detail", p.philosophy));
       var meta = "leash: " + p.risk + (p.forkOf ? " · forked from " + p.forkOf : "") +
         (p.lastTick ? " · last tick " + rel(p.lastTick) : " · waiting for its first tick");
@@ -1021,18 +1071,151 @@
       var act = el("td", "num");
       var fork = el("a", null, "fork");
       fork.href = "#fleet-form";
-      fork.addEventListener("click", function () {
+      fork.addEventListener("click", function (ev) {
+        ev.stopPropagation();
         FLEET_FORK.of = p.id;
-        document.getElementById("fleet-form").hidden = false;
+        var form = document.getElementById("fleet-form");
+        form.hidden = false;
+        document.getElementById("fleet-open").style.display = "none";
         document.getElementById("sail-philosophy").value = p.philosophy || "";
+        document.getElementById("sail-count").textContent = String((p.philosophy || "").length);
         document.getElementById("sail-risk").value = p.risk || "classic";
         document.getElementById("sail-status").textContent =
           "forking " + p.name + ". change what you disagree with, then set sail.";
+        form.scrollIntoView({ behavior: "smooth" });
       });
       act.appendChild(fork);
       tr.appendChild(act);
+      tr.addEventListener("click", function () { openPirate(p.id); });
       body.appendChild(tr);
     });
+  }
+
+  /* open a pirate's full public record; add owner controls if you hold its pass */
+  function openPirate(id) {
+    var box = document.getElementById("pirate-detail");
+    box.hidden = false;
+    box.innerHTML = '<div class="pd-head"><span class="pd-name">loading...</span></div>';
+    box.scrollIntoView({ behavior: "smooth", block: "start" });
+    apiFetch("/api/fleet?id=" + encodeURIComponent(id))
+      .then(function (r) { return r.status === 403 ? null : r.json(); })
+      .then(function (p) { if (p && !p.error) renderPirate(p); else box.hidden = true; })
+      .catch(function () { box.hidden = true; });
+  }
+
+  function renderPirate(p) {
+    var box = document.getElementById("pirate-detail");
+    var mine = fleetPass();
+    var owner = mine && mine.id === p.id;
+    var st = p.state || { cash: 1000, positions: {}, trades: [], equityCurve: [] };
+    var equity = st.equityCurve && st.equityCurve.length ? st.equityCurve[st.equityCurve.length - 1].value : (p.equity != null ? p.equity : 1000);
+    var pnl = equity / 1000 - 1;
+    box.textContent = "";
+
+    var head = el("div", "pd-head");
+    var nm = el("span", "pd-name", p.name);
+    if (p.paused) nm.appendChild(el("span", "pd-paused-flag", "  paused"));
+    if (p.retired) nm.appendChild(el("span", "pd-paused-flag", "  retired"));
+    head.appendChild(nm);
+    var close = el("a", "pd-close", "close");
+    close.href = "#";
+    close.onclick = function (ev) { ev.preventDefault(); box.hidden = true; };
+    head.appendChild(close);
+    box.appendChild(head);
+
+    var body = el("div", "pd-body");
+    body.appendChild(el("div", "pd-soul", "“" + (p.philosophy || "") + "”"));
+
+    var stats = el("div", "pd-stats");
+    function stat(k, v, cls) {
+      var s = el("div", "pd-stat");
+      s.appendChild(el("div", "k", k));
+      s.appendChild(el("div", "v" + (cls ? " " + cls : ""), v));
+      stats.appendChild(s);
+    }
+    stat("chest", fmtMoney.format(equity));
+    stat("pnl", (pnl >= 0 ? "+" : "") + (pnl * 100).toFixed(1) + "%", pnl >= 0 ? "up" : "down");
+    stat("raids", String((st.trades || []).length));
+    stat("leash", p.risk);
+    body.appendChild(stats);
+
+    var meta = el("div", "pd-meta");
+    meta.textContent = "created " + (p.createdAt ? rel(p.createdAt) : "recently") +
+      (p.forkOf ? " · forked from " + p.forkOf : "") +
+      " · wakes every few hours · paper money against real prices";
+    body.appendChild(meta);
+
+    if (owner) {
+      var man = el("div", "pd-manage");
+      man.appendChild(el("div", null, "you own this pirate. your boarding pass is the key; nobody else can change it."));
+      var actions = el("div", "pd-actions");
+      var pauseBtn = el("button", null, p.paused ? "resume trading" : "pause trading");
+      pauseBtn.onclick = function () { managePirate(p.id, "PATCH", { paused: !p.paused }, pauseBtn); };
+      actions.appendChild(pauseBtn);
+      var retireBtn = el("button", "danger", "retire");
+      retireBtn.onclick = function () {
+        if (confirm("retire " + p.name + "? it leaves the board. its log stays public forever.")) {
+          managePirate(p.id, "DELETE", null, retireBtn);
+        }
+      };
+      actions.appendChild(retireBtn);
+      man.appendChild(actions);
+      man.appendChild(el("div", "pd-note", "no deposit or withdraw: the money is paper. real money is a separate, later phase."));
+      body.appendChild(man);
+    }
+
+    // full trade log
+    var trades = (st.trades || []).slice().reverse();
+    if (trades.length) {
+      var wrap = el("div", "tablewrap");
+      var t = el("table", "list");
+      var thead = el("thead");
+      var hr = el("tr");
+      ["when", "move", "ticker", "fill", "size", "why"].forEach(function (h) { hr.appendChild(el("th", null, h)); });
+      thead.appendChild(hr); t.appendChild(thead);
+      var tb = el("tbody");
+      trades.forEach(function (tr2) {
+        var row = el("tr");
+        row.appendChild(el("td", "when", rel(tr2.ts)));
+        row.appendChild(el("td", tr2.action === "buy" ? "up" : "down", tr2.action.toUpperCase()));
+        row.appendChild(el("td", null, tr2.ticker));
+        row.appendChild(el("td", "num", "$" + tr2.price.toFixed(2)));
+        row.appendChild(el("td", "num", fmtMoney.format(tr2.usd)));
+        var why = el("td", "detail");
+        why.appendChild((function () { var i = document.createElement("i"); i.textContent = "“" + (tr2.reasoning || "") + "”"; return i; })());
+        row.appendChild(why);
+        tb.appendChild(row);
+      });
+      t.appendChild(tb); wrap.appendChild(t); body.appendChild(wrap);
+    } else {
+      body.appendChild(el("div", "empty", "no raids yet. its first trade lands within a few hours of setting sail."));
+    }
+
+    box.appendChild(body);
+  }
+
+  function managePirate(id, method, payload, btn) {
+    var mine = fleetPass();
+    if (!mine || mine.id !== id || !mine.token) { alert("you need this pirate's boarding pass on this device."); return; }
+    if (btn) btn.disabled = true;
+    var opts = { method: method, headers: { "x-boarding-pass": mine.token } };
+    if (payload) { opts.headers["Content-Type"] = "application/json"; opts.body = JSON.stringify(payload); }
+    apiFetch("/api/fleet?id=" + encodeURIComponent(id), opts)
+      .then(function (r) { return r.json(); })
+      .then(function (res) {
+        if (btn) btn.disabled = false;
+        if (res.error) { alert(res.error); return; }
+        if (res.retired) {
+          try { localStorage.removeItem("tpc_pirate"); } catch (e) {}
+          document.getElementById("pirate-detail").hidden = true;
+          document.getElementById("fleet-my").hidden = true;
+          loadFleet();
+          return;
+        }
+        openPirate(id);
+        loadFleet();
+      })
+      .catch(function () { if (btn) btn.disabled = false; alert("the sea swallowed it. try again."); });
   }
 
   function loadFleet() {
