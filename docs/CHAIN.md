@@ -147,6 +147,38 @@ Swap path to build (SwapRouter02, simplest safe route):
    ETH->USDG uses tokenIn=WETH with msg.value (SwapRouter02 wraps).
 Confirm the WETH/USDG and USDG/<stock> pool fee tiers (500/3000/10000) exist before use.
 
+## DECISIVE: liquidity is Uniswap V4, and autonomous swaps are feasible
+
+Verified on-chain 2026-07-22:
+- NO Uniswap V3 pools exist for USDG/NVDA (all fee tiers) or WETH/USDG. The V3
+  SwapRouter02 path is a DEAD END for our pairs. Do not build against it.
+- Uniswap **V4** PoolManagers are deployed. The liquidity (USDG/stock pools) is on V4.
+- The 50 most recent transactions to the UniversalRouter ALL call plain
+  `execute(commands, inputs)` (47 ok, 3 fail). NONE use `executeSigned`.
+  => Autonomous swaps do NOT need a Robinhood-signed price. The onchain plan is
+  feasible for a third-party bot. This was the make-or-break question; it passed.
+
+### The real swap path (what to build)
+
+- Router: UniversalRouter 0x8876789976decbfcbbbe364623c63652db8c0904, `execute()`.
+- Protocol: Uniswap **V4** (Actions encoding: SWAP_EXACT_IN_SINGLE + SETTLE_ALL + TAKE_ALL).
+- Approvals: Permit2 canonical 0x000000000022D473030F116dDEE9F6B43aC78BA3.
+- Still needed to write the swap safely (extract from a real successful swap's
+  calldata + the V4 PoolManager): the **PoolKey** for each USDG/stock pair
+  (currency0, currency1, fee, tickSpacing, hooks). The hooks address especially
+  must be exact. Get it by decoding one successful execute() swap on the router,
+  or reading PoolManager Initialize events.
+- Validation: a real test swap must be broadcast (by the owner) to confirm the
+  encoding before scaling. Gas-only risk on a wrong encoding (it reverts), but
+  confirm on a tiny amount first.
+
+### Immediate ETH -> USDG bootstrap
+
+The pirates hold USDG; the canary wallet holds ETH. Simplest safe path for this
+ONE-OFF: do it in the Robinhood Wallet / Uniswap app UI (their UI does correct V4
+routing), keep a little ETH for gas. Building a bespoke V4 swap just for a one-time
+bootstrap is not worth the risk; the bot's RECURRING swaps are where the V4 build pays off.
+
 ## Canary funding (agreed 2026-07-22)
 
 Canary pirate: **Ledger** = 0xa475646915E776CACEAE253a52674d352c773fc6.

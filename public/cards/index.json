@@ -1,5 +1,40 @@
 [
   {
+    "file": "crow-2026-07-23T01-05-01-845Z.svg",
+    "pirate": "crow",
+    "ts": "2026-07-23T01:05:01.845Z",
+    "ticker": "COIN",
+    "action": "sell"
+  },
+  {
+    "file": "cannon-2026-07-23T01-05-01-845Z.svg",
+    "pirate": "cannon",
+    "ts": "2026-07-23T01:05:01.845Z",
+    "ticker": "NVDA",
+    "action": "buy"
+  },
+  {
+    "file": "cannon-2026-07-23T01-05-01-845Z.svg",
+    "pirate": "cannon",
+    "ts": "2026-07-23T01:05:01.845Z",
+    "ticker": "AAPL",
+    "action": "buy"
+  },
+  {
+    "file": "cannon-2026-07-23T01-05-01-845Z.svg",
+    "pirate": "cannon",
+    "ts": "2026-07-23T01:05:01.845Z",
+    "ticker": "NVDA",
+    "action": "buy"
+  },
+  {
+    "file": "flint-2026-07-23T01-05-01-845Z.svg",
+    "pirate": "flint",
+    "ts": "2026-07-23T01:05:01.845Z",
+    "ticker": "META",
+    "action": "buy"
+  },
+  {
     "file": "ledger-2026-07-23T00-05-02-228Z.svg",
     "pirate": "ledger",
     "ts": "2026-07-23T00:05:02.228Z",
@@ -63,20 +98,6 @@
     "action": "buy"
   },
   {
-    "file": "cannon-2026-07-22T23-26-23-969Z.svg",
-    "pirate": "cannon",
-    "ts": "2026-07-22T23:26:23.969Z",
-    "ticker": "NVDA",
-    "action": "buy"
-  },
-  {
-    "file": "cannon-2026-07-22T23-26-23-969Z.svg",
-    "pirate": "cannon",
-    "ts": "2026-07-22T23:26:23.969Z",
-    "ticker": "META",
-    "action": "sell"
-  },
-  {
     "file": "flint-2026-07-22T23-26-23-969Z.svg",
     "pirate": "flint",
     "ts": "2026-07-22T23:26:23.969Z",
@@ -95,13 +116,6 @@
     "pirate": "ledger",
     "ts": "2026-07-22T23:08:45.334Z",
     "ticker": "AAPL",
-    "action": "buy"
-  },
-  {
-    "file": "cannon-2026-07-22T23-08-45-334Z.svg",
-    "pirate": "cannon",
-    "ts": "2026-07-22T23:08:45.334Z",
-    "ticker": "NVDA",
     "action": "buy"
   },
   {
@@ -138,13 +152,6 @@
     "ts": "2026-07-22T23:03:54.105Z",
     "ticker": "COIN",
     "action": "buy"
-  },
-  {
-    "file": "flint-2026-07-22T23-03-54-105Z.svg",
-    "pirate": "flint",
-    "ts": "2026-07-22T23:03:54.105Z",
-    "ticker": "AMD",
-    "action": "sell"
   },
   {
     "file": "crow-2026-07-22T21-14-29-100Z.svg",
