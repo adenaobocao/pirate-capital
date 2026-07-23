@@ -407,6 +407,18 @@
   </div>
   <p class="tavernline" id="parkline" hidden>The Tavern (ai crowd simulation) says: <i id="park-vibe"></i></p>
 
+  <div class="bar" id="wire">
+    <span>The Wire</span>
+    <span class="note">real-world signals the crew reads: news, tariffs, policy, sentiment.</span>
+  </div>
+  <p class="tavernline" id="wire-macro" hidden></p>
+  <div class="tablewrap" id="wire-wrap" hidden>
+    <table class="list" aria-label="the wire">
+      <thead><tr><th>Ticker</th><th class="num">Signal</th><th>Latest headline</th></tr></thead>
+      <tbody id="wire-body"></tbody>
+    </table>
+  </div>
+
   <!-- ── the parley ── -->
   <div class="bar" id="parley">
     <span>The Parley</span>
@@ -1004,12 +1016,44 @@
     view.appendChild(wrap);
   }
 
+  function renderWire() {
+    var w = DATA && DATA.wire;
+    var macroEl = document.getElementById("wire-macro");
+    var wrap = document.getElementById("wire-wrap");
+    var body = document.getElementById("wire-body");
+    if (!w) { macroEl.hidden = true; wrap.hidden = true; return; }
+    var m = w.macro || {};
+    var bits = [];
+    if (m.tariffPressure != null) bits.push("tariff pressure " + m.tariffPressure);
+    if (m.cryptoFearGreed != null) bits.push("crypto mood " + m.cryptoFearGreed);
+    if (m.rates) bits.push(m.rates);
+    if (m.policyNote) bits.push(m.policyNote);
+    macroEl.innerHTML = "macro: <i></i>";
+    macroEl.querySelector("i").textContent = bits.join(" · ");
+    macroEl.hidden = false;
+    body.textContent = "";
+    (w.tickers || []).forEach(function (t) {
+      if (!t.headline && (t.signal === 0 || t.signal == null)) return;
+      var tr = document.createElement("tr");
+      var td0 = el("td", null, t.ticker); td0.style.fontWeight = "bold"; tr.appendChild(td0);
+      var s = t.signal || 0;
+      tr.appendChild(el("td", "num " + (Math.abs(s) < 0.05 ? "flatp" : s > 0 ? "up" : "down"),
+        (s >= 0 ? "+" : "") + s.toFixed(2)));
+      var h = el("td", "detail", t.headline || "(no fresh headline)");
+      h.style.whiteSpace = "normal";
+      tr.appendChild(h);
+      body.appendChild(tr);
+    });
+    wrap.hidden = body.children.length === 0;
+  }
+
   function renderAll() {
     renderStats();
     renderCrew();
     renderFeed();
     renderBoard();
     renderPark();
+    renderWire();
     renderParley();
   }
 

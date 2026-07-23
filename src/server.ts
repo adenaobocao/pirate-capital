@@ -4,7 +4,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { AGENTS, STARTING_CASH, UNIVERSE } from "./config/agents.js";
 import { fetchQuotes } from "./market/yahoo.js";
-import { computeEquity, loadCrowdReport, loadParley, loadState } from "./portfolio/store.js";
+import { computeEquity, loadCrowdReport, loadParley, loadState, loadWire } from "./portfolio/store.js";
 import type { Quote } from "./types.js";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -57,6 +57,7 @@ async function buildState() {
     agents,
     crowd: loadCrowdReport(),
     parley: loadParley().threads.slice(0, 12),
+    wire: loadWire(),
   };
 }
 

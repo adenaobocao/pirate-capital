@@ -50,6 +50,15 @@ function loadCrowd() {
   }
 }
 
+function loadWire() {
+  try {
+    const w = JSON.parse(fs.readFileSync(path.join(STATE_DIR, "wire.json"), "utf-8"));
+    return { macro: w.macro, tickers: w.tickers };
+  } catch {
+    return null;
+  }
+}
+
 function loadParley() {
   for (const dir of [STATE_DIR, path.join(process.cwd(), "seed")]) {
     try {
@@ -139,6 +148,7 @@ export async function GET(request) {
     agents,
     crowd: loadCrowd(),
     parley: loadParley(),
+    wire: loadWire(),
   };
 
   return new Response(JSON.stringify(body), {

@@ -42,6 +42,17 @@ export function loadCrowdReport(): object | null {
   return JSON.parse(fs.readFileSync(file, "utf-8"));
 }
 
+export function loadWire(): object | null {
+  const file = path.join(STATE_DIR, "wire.json");
+  if (!fs.existsSync(file)) return null;
+  try {
+    const w = JSON.parse(fs.readFileSync(file, "utf-8"));
+    return { macro: w.macro, tickers: w.tickers };
+  } catch {
+    return null;
+  }
+}
+
 export interface ParleyThread {
   id: number;
   topic: string;

@@ -83,6 +83,7 @@ export async function decide(
     quotes: view.quotes,
     monteCarlo: view.mc,
     crowd: view.crowd,
+    wire: view.wire,
     portfolio,
     limits: {
       maxOrdersPerTick: persona.risk.maxOrdersPerTick,
@@ -90,7 +91,7 @@ export async function decide(
       maxPositionPctOfEquity: persona.risk.maxPositionPct,
     },
   };
-  const userMsg = `New tick. State of the market and of your portfolio:\n${JSON.stringify(payload, null, 2)}\n\nDecide your orders for this tick (or hold).`;
+  const userMsg = `New tick. State of the market and of your portfolio:\n${JSON.stringify(payload, null, 2)}\n\nThe "wire" field is real-world context: per-ticker news/analyst signal (-1 bearish..+1 bullish), plus macro (tariff pressure, crypto fear/greed, rates, latest policy action). Weigh it the way your philosophy would. Decide your orders for this tick (or hold).`;
 
   // default path: any openai compatible endpoint (see src/brain/llm.ts)
   if (openAiCompatConfigured()) {

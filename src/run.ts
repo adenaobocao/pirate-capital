@@ -10,6 +10,7 @@ import { appendTick, type TickRecord } from "./portfolio/provenance.js";
 import { brainId } from "./brain/llm.js";
 import { monteCarlo } from "./sim/montecarlo.js";
 import { runCrowd } from "./sim/crowd.js";
+import { getWire } from "./data/signals.js";
 import type { Decision, MarketView, McStats, Order } from "./types.js";
 
 /**
@@ -64,18 +65,28 @@ async function main() {
     if (stats) mc.push(stats);
   }
 
-  // 3. The brain: openai compatible endpoint by default, anthropic as fallback
+  // 3. The wire: real-world signals (news, tariffs, policy, sentiment), cached
+  const wire = await getWire(quotes.map((q) => q.ticker)).catch(() => null);
+  if (wire) {
+    console.log(
+      `the wire: tariff ${wire.macro.tariffPressure ?? "n/a"}, crypto f&g ${wire.macro.cryptoFearGreed ?? "n/a"}` +
+        (wire.macro.policyNote ? ` | ${wire.macro.policyNote}` : ""),
+    );
+    console.log(`         signals: ${wire.tickers.map((t) => `${t.ticker} ${t.signal}`).join("  ")}\n`);
+  }
+
+  // 4. The brain: openai compatible endpoint by default, anthropic as fallback
   const live = !DRY;
   const client = live && !openAiCompatConfigured() ? new Anthropic() : null;
 
-  // 4. The tavern (one call, shared by the four pirates)
+  // 5. The tavern (one call, shared by the four pirates)
   const crowd = live ? await runCrowd(client, quotes, mc) : null;
   if (crowd) {
     console.log(`the tavern: ${crowd.vibe}\n`);
     saveCrowdReport({ ts, ...crowd });
   }
 
-  const view: MarketView = { quotes, mc, crowd };
+  const view: MarketView = { quotes, mc, crowd, wire };
   const executor = new PaperExecutor();
 
   // 5. Decision + execution per pirate

@@ -86,7 +86,7 @@ async function main() {
   for (let round = 0; round < ROUNDS; round++) {
     const persona = pick(AGENTS);
     const quotes = randomQuotes();
-    const view: MarketView = { quotes, mc: [], crowd: null };
+    const view: MarketView = { quotes, mc: [], crowd: null, wire: null };
     const state = randomState(quotes);
 
     let equity = state.cash;

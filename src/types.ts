@@ -81,8 +81,29 @@ export interface Fill {
   usd: number;
 }
 
+export interface WireTicker {
+  ticker: string;
+  signal: number;
+  newsTone: number | null;
+  analyst: number | null;
+  headline: string | null;
+  sources: string[];
+}
+
+export interface WireReport {
+  macro: {
+    policyNote: string | null;
+    tariffPressure: number | null;
+    cryptoFearGreed: number | null;
+    rates: string | null;
+    asOf: string;
+  };
+  tickers: WireTicker[];
+}
+
 export interface MarketView {
   quotes: Quote[];
   mc: McStats[];
   crowd: CrowdReport | null;
+  wire: WireReport | null;
 }
