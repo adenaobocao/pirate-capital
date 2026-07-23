@@ -101,6 +101,58 @@ Stock tokens (18 dec). Explorer-verified: **TSLA** 0x322F0929c4625eD5bAd873c9520
 Begin real trading with the 4 explorer-verified names only: NVDA, AAPL, MSFT, TSLA.
 Add others only after you personally verify each address on the explorer.
 
+## On-chain verification (done live via the Alchemy RPC, read-only, 2026-07-22)
+
+Confirmed directly against the chain, not trusted from research:
+- Router 0x8876789976decbfcbbbe364623c63652db8c0904 exists (49 KB bytecode),
+  verified on Blockscout as **UniversalRouter**.
+- USDG 0x5fc5360D0400a0Fd4f2af552ADD042D716F1d168: decimals 6, symbol USDG.
+- NVDA 0xd0601CE157Db5bdC3162BbaC2a2C8aF5320D9EEC: decimals 18, symbol NVDA,
+  paused() == false.
+
+## The router is a MODIFIED UniversalRouter fork (matters for the swap code)
+
+Verified ABI exposes:
+- `execute(bytes commands, bytes[] inputs)` — standard
+- `execute(bytes commands, bytes[] inputs, uint256 deadline)` — standard
+- `executeSigned(bytes commands, bytes[] inputs, bytes32 intent, bytes32 data,
+   bool verifySender, bytes32 nonce, bytes signature, uint256 deadline)` — Robinhood
+   addition (signed-intent flow, likely for the minHopPriceX36 signed-price path)
+
+Conclusion: a standard Uniswap v3 swap via `execute()` with a V3_SWAP_EXACT_IN
+command is available and is the path to build. The signed variant is not required
+for a basic swap. UniversalRouter pulls tokens via Permit2, so the flow is:
+approve USDG to Permit2 -> Permit2 approve to UniversalRouter -> execute() the swap,
+with an on-chain quote (QuoterV2) and a minOut from maxSlippage, and a paused()
+check on the target token before every trade.
+
+## Swap venue pinned (verified by activity, 2026-07-22)
+
+The explorer has multiple contracts sharing each name (impostors, like USDG).
+Pinned the canonical ones by real activity / known constants:
+- **SwapRouter02** = 0xB2d8eD81e79eb64A0751352459eC215FbAFad669 (40 txns, 62 transfers;
+  the other 3 "SwapRouter02" have zero activity). Use exactInputSingle with a
+  direct ERC-20 approve (no Permit2 needed for SwapRouter02).
+- **Permit2** (canonical, universal) = 0x000000000022D473030F116dDEE9F6B43aC78BA3 (present, 18KB).
+- QuoterV2: 4 candidates all show 0 txns, but a quoter is a view contract called
+  via eth_call (0 txns is expected), so activity does not disambiguate it. Pick it
+  by matching Uniswap's official deployment or by test-quoting against a known pool.
+- Ledger canary funded: 0.0258 ETH (~$50) confirmed on-chain.
+
+Swap path to build (SwapRouter02, simplest safe route):
+1. check target token paused()==false
+2. amountOutMinimum from a reference price (yahoo) x (1 - maxSlippage)
+3. approve(SwapRouter02, amountIn) on the input token
+4. exactInputSingle({tokenIn, tokenOut, fee, recipient, amountIn, amountOutMinimum, sqrtPriceLimitX96:0})
+   ETH->USDG uses tokenIn=WETH with msg.value (SwapRouter02 wraps).
+Confirm the WETH/USDG and USDG/<stock> pool fee tiers (500/3000/10000) exist before use.
+
+## Canary funding (agreed 2026-07-22)
+
+Canary pirate: **Ledger** = 0xa475646915E776CACEAE253a52674d352c773fc6.
+Fund with a SMALL test first: ~$15 USDG (trading capital) + ~$2-3 ETH (gas). Prove
+the full swap path with the tiny amount before scaling to $100/pirate across the crew.
+
 ## Open question that changes everything (from research)
 
 Are the tokenized stocks freely transferable and swappable by an arbitrary
