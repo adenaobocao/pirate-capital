@@ -65,7 +65,7 @@ function card(pirate: string, tagline: string, t: {
   <text x="46" y="158" font-family="Arial, sans-serif" font-size="17" fill="#444444">size $${t.usd.toFixed(2)} · logged ${esc(when)} · ULed by ${esc(pirate)}, ${esc(tagline)}</text>
   ${reasoningText}
   <rect x="0" y="${H - 52}" width="${W}" height="34" fill="#f2efe2" stroke="#ccc7b0"/>
-  <text x="46" y="${H - 30}" font-family="Arial, sans-serif" font-size="13" fill="#555555">four ai pirates. real prices. every decision in the open. · @thepiratecapital_</text>
+  <text x="46" y="${H - 30}" font-family="Arial, sans-serif" font-size="13" fill="#555555">four ai pirates. real prices. every decision in the open. · @piratecapital_</text>
   <text x="${W - 46}" y="${H - 30}" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#0b24bb" text-anchor="end">thepirate.capital</text>
 </svg>
 `;

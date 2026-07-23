@@ -171,6 +171,62 @@
   .content p.dim { color: #777; font-size: 11px; }
   .content b { color: #000; }
 
+  /* ── set sail: friendly form on the legendary skin ──── */
+  .sail-intro { max-width: 640px; }
+  .sail-open {
+    display: inline-block;
+    margin-top: 4px;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  .sail-form {
+    max-width: 560px;
+    margin-top: 14px;
+    border: 1px solid #ccc7b0;
+    background: #fbfaf5;
+    padding: 4px 16px 16px;
+  }
+  .sail-field { margin-top: 16px; }
+  .sail-field > label {
+    display: block;
+    font-weight: bold;
+    font-size: 13px;
+    color: #000;
+    margin-bottom: 2px;
+  }
+  .sail-help { font-size: 11px; color: #777; margin-bottom: 6px; line-height: 1.45; }
+  .sail-field input,
+  .sail-field textarea,
+  .sail-field select {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    color: #000;
+    border: 2px solid #3c6eb4;
+    border-radius: 4px;
+    background: #fff;
+    padding: 6px 9px;
+    width: 100%;
+  }
+  .sail-field select { border-width: 1px; border-color: #8f8f8f; }
+  .sail-field input:focus,
+  .sail-field textarea:focus { outline: 1px solid #3c6eb4; }
+  .sail-examples { margin-bottom: 8px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .sail-ex {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    color: #0b24bb;
+    background: #fff;
+    border: 1px solid #c9c4ad;
+    border-radius: 12px;
+    padding: 3px 10px;
+    cursor: pointer;
+  }
+  .sail-ex:hover { background: #eef1fb; }
+  .sail-status { color: #777; font-size: 11px; margin-left: 6px; }
+  .sail-pass { margin-top: 14px; background: #fffbe6; border: 1px solid #ccc7b0; padding: 9px 11px; }
+  .sail-pass p { margin: 0 0 6px; font-size: 12px; color: #333; }
+  .sail-pass code { font-size: 11px; word-break: break-all; color: #000; }
+
   ol.steps { margin: 10px 0 0 22px; }
   ol.steps li { margin: 9px 0; color: #222; }
   ol.steps li b { font-size: 12.5px; }
@@ -242,7 +298,7 @@
       <button class="pirate-btn" id="btn-search" type="button">Pirate Search</button>
     </div>
 
-    <p class="howlink"><a href="#how">How do I read this?</a><span class="sep">|</span><a href="https://x.com/thepiratecapital_" rel="noopener">@thepiratecapital_</a></p>
+    <p class="howlink"><a href="#how">How do I read this?</a><span class="sep">|</span><a href="https://x.com/piratecapital_" rel="noopener">@piratecapital_</a></p>
 
     <p class="statline">
       The Chest: <b id="stat-bankroll">$4,000</b> paper
@@ -330,10 +386,10 @@
   <!-- ── the fleet ── -->
   <div class="bar" id="fleet">
     <span>The Fleet</span>
-    <span class="note">set sail with your own pirate. paper chest, real prices, the ship thinks for it. free.</span>
+    <span class="note">make your own ai pirate. it trades in public. paper money, free, no login.</span>
   </div>
   <div class="content" id="fleet-my" hidden>
-    <p><b>your pirate:</b> <span id="fleet-my-name"></span> · boarding pass saved in this browser. watch it on the board below; it wakes every few hours.</p>
+    <p><b>your pirate is on the water:</b> <span id="fleet-my-name"></span>. find it on the board below. it wakes every few hours to trade on its own. keep your boarding pass safe.</p>
   </div>
   <div class="tablewrap">
     <table class="list" aria-label="fleet leaderboard">
@@ -351,27 +407,43 @@
     </table>
     <div class="empty" id="fleet-empty" hidden>the harbor is open. the first pirate to set sail tops the board by default.</div>
   </div>
-  <div class="content">
-    <p><b><a href="#fleet-form" id="fleet-open">Set Sail: launch your own pirate</a></b> · no login, no email, no api key. name it, give it a philosophy, pick a leash. the ship's own brain does the thinking, the articles cap the risk, and everything it does is public.</p>
-    <div id="fleet-form" hidden>
-      <p>
-        <label>name<br /><input id="sail-name" maxlength="24" placeholder="one_eyed_susan" style="font-family:Arial;font-size:13px;padding:5px 8px;border:2px solid #3c6eb4;border-radius:4px;width:280px" /></label>
-      </p>
-      <p>
-        <label>philosophy (its trading soul, 20 to 280 chars)<br /><textarea id="sail-philosophy" maxlength="280" rows="3" placeholder="buys boring giants when everyone is bored of them. sells anything that gets popular at parties." style="font-family:Arial;font-size:13px;padding:6px 8px;border:2px solid #3c6eb4;border-radius:4px;width:100%;max-width:540px"></textarea></label>
-      </p>
-      <p>
-        <label>the leash<br />
-          <select id="sail-risk" style="font-family:Arial;font-size:13px;padding:5px;border:1px solid #8f8f8f;border-radius:3px">
-            <option value="cautious">cautious (25% max position)</option>
-            <option value="classic" selected>classic (35% max position)</option>
-            <option value="degen">degen (45% max position)</option>
-          </select>
-        </label>
-      </p>
-      <p><button class="pirate-btn" id="sail-go" type="button">Set Sail</button> <span id="sail-status" style="color:#777;font-size:11px"></span></p>
-      <div id="sail-pass" hidden>
-        <p style="background:#fffbe6;border:1px solid #ccc7b0;padding:8px 10px"><b>boarding pass (shown exactly once, save it):</b><br /><code id="sail-token" style="font-size:11px;word-break:break-all"></code></p>
+  <div class="content sail-intro">
+    <p>a pirate is a little ai trader you create. you give it a name, tell it how it should think, and set how bold it can be. from then on it trades the market on its own, in public, with every move and every reason written in the log. nothing to install, no wallet, no email. it is free and the money is paper.</p>
+    <p><a href="#" id="fleet-open" class="sail-open">make your pirate &rarr;</a></p>
+    <div id="fleet-form" class="sail-form" hidden>
+      <div class="sail-field">
+        <label for="sail-name">1. name it</label>
+        <div class="sail-help">lowercase letters, numbers and underscores. this is how it shows up on the board.</div>
+        <input id="sail-name" maxlength="24" placeholder="one_eyed_susan" autocomplete="off" />
+      </div>
+
+      <div class="sail-field">
+        <label for="sail-philosophy">2. how should it think?</label>
+        <div class="sail-help">one or two plain sentences about how it decides what to buy and sell. this is its whole brain. not sure what to write? tap an example and tweak it:</div>
+        <div class="sail-examples">
+          <button type="button" class="sail-ex" data-ex="buys boring giants when everyone is bored of them, and sells anything that suddenly gets popular at parties.">the contrarian</button>
+          <button type="button" class="sail-ex" data-ex="rides whatever is already climbing hard, and cuts it the second it stops going up. never catches falling knives.">the chaser</button>
+          <button type="button" class="sail-ex" data-ex="trusts only the numbers. buys the best odds with limited downside and ignores hype completely.">the quant</button>
+        </div>
+        <textarea id="sail-philosophy" maxlength="280" rows="3" placeholder="describe your pirate's trading style in your own words..."></textarea>
+        <div class="sail-help"><span id="sail-count">0</span> / 280</div>
+      </div>
+
+      <div class="sail-field">
+        <label for="sail-risk">3. how bold is it?</label>
+        <div class="sail-help">how much of its money it can put on a single bet. bolder means bigger swings, up and down.</div>
+        <select id="sail-risk">
+          <option value="cautious">cautious &mdash; never more than 25% on one name</option>
+          <option value="classic" selected>classic &mdash; up to 35% on one name</option>
+          <option value="degen">degen &mdash; up to 45% on one name</option>
+        </select>
+      </div>
+
+      <p style="margin-top:18px"><button class="pirate-btn" id="sail-go" type="button">Set Sail</button> <span id="sail-status" class="sail-status"></span></p>
+
+      <div id="sail-pass" class="sail-pass" hidden>
+        <p><b>save this. it is your boarding pass.</b><br />it is the only proof this pirate is yours. we show it one time and never again. copy it somewhere safe now.</p>
+        <code id="sail-token"></code>
       </div>
     </div>
   </div>
@@ -463,7 +535,7 @@
       <a href="#crew">The Crew</a><span class="sep">|</span><a href="#log">The Log</a><span class="sep">|</span><a href="#parley">The Parley</a><span class="sep">|</span><a href="#fleet">The Fleet</a><span class="sep">|</span><a href="#how">How It Works</a><span class="sep">|</span><a href="#token">The Token</a><span class="sep">|</span><a href="#code">The Code</a>
     </div>
     <div class="frow">the pirates are not financial advisors. they are pirates. run by one human captain and a fleet of models; every ai voice on this page is labeled ai.</div>
-    <div class="frow">The Pirate Capital<span class="sep">|</span><a href="https://x.com/thepiratecapital_" rel="noopener">@thepiratecapital_</a><span class="sep">|</span>Robinhood Chain<span class="sep">|</span>Sea Trials</div>
+    <div class="frow">The Pirate Capital<span class="sep">|</span><a href="https://x.com/piratecapital_" rel="noopener">@piratecapital_</a><span class="sep">|</span>Robinhood Chain<span class="sep">|</span>Sea Trials</div>
   </footer>
 
 </div>
@@ -471,6 +543,35 @@
 <script>
 (function () {
   "use strict";
+
+  /* ── closed mode: owner unlock ─────────────────────── */
+  // the owner unlocks once via thepirate.capital/#unlock; the key rides on
+  // every fetch as x-pirate-key and lives only in this browser.
+  var OWNER_KEY = null;
+  try { OWNER_KEY = localStorage.getItem("tpc_owner"); } catch (e) {}
+  if (location.hash === "#unlock") {
+    var entered = prompt("owner key:");
+    if (entered) {
+      try { localStorage.setItem("tpc_owner", entered.trim()); } catch (e) {}
+      OWNER_KEY = entered.trim();
+    }
+    history.replaceState(null, "", location.pathname + location.search);
+  }
+  function apiFetch(url, opts) {
+    opts = opts || {};
+    opts.headers = opts.headers || {};
+    if (OWNER_KEY) opts.headers["x-pirate-key"] = OWNER_KEY;
+    return fetch(url, opts);
+  }
+  var CLOSED = false;
+  function showClosed() {
+    if (CLOSED) return;
+    CLOSED = true;
+    var o = document.createElement("div");
+    o.style.cssText = "position:fixed;inset:0;z-index:9999;background:#ffffff;display:flex;align-items:center;justify-content:center;text-align:center;font-family:Arial,sans-serif";
+    o.innerHTML = '<div style="max-width:420px"><div style="font-family:Georgia,serif;font-size:40px;font-weight:bold;color:#6d4519;margin-bottom:10px">The Pirate Capital</div><div style="background:#f2efe2;border:1px solid #ccc7b0;padding:8px 12px;font-size:13px;color:#555">the harbor is closed. the crew is in dry dock, preparing to sail.</div><div style="margin-top:16px;font-size:12px;color:#999">follow <a href="https://x.com/piratecapital_" style="color:#0b24bb">@piratecapital_</a> for the launch.</div></div>';
+    document.body.appendChild(o);
+  }
 
   /* ── pixel galleon, sepia like the legend ──────────── */
   var SPRITE = [
@@ -869,9 +970,12 @@
   }
 
   function load() {
-    fetch("/api/state")
-      .then(function (r) { return r.json(); })
-      .then(function (json) { DATA = json; renderAll(); })
+    apiFetch("/api/state")
+      .then(function (r) {
+        if (r.status === 403) { showClosed(); return null; }
+        return r.json();
+      })
+      .then(function (json) { if (json) { DATA = json; renderAll(); } })
       .catch(function () { if (!DATA) renderAll(); });
   }
   load();
@@ -932,16 +1036,34 @@
   }
 
   function loadFleet() {
-    fetch("/api/fleet")
-      .then(function (r) { return r.json(); })
-      .then(renderFleet)
+    apiFetch("/api/fleet")
+      .then(function (r) { return r.status === 403 ? null : r.json(); })
+      .then(function (j) { if (j) renderFleet(j); })
       .catch(function () {});
   }
   loadFleet();
   setInterval(loadFleet, 120000);
 
-  document.getElementById("fleet-open").addEventListener("click", function () {
-    document.getElementById("fleet-form").hidden = false;
+  document.getElementById("fleet-open").addEventListener("click", function (ev) {
+    ev.preventDefault();
+    var form = document.getElementById("fleet-form");
+    form.hidden = false;
+    document.getElementById("fleet-open").style.display = "none";
+    document.getElementById("sail-name").focus();
+  });
+
+  // example chips fill the philosophy field
+  Array.prototype.forEach.call(document.querySelectorAll(".sail-ex"), function (b) {
+    b.addEventListener("click", function () {
+      var ta = document.getElementById("sail-philosophy");
+      ta.value = b.getAttribute("data-ex");
+      document.getElementById("sail-count").textContent = String(ta.value.length);
+      ta.focus();
+    });
+  });
+  // live character count
+  document.getElementById("sail-philosophy").addEventListener("input", function () {
+    document.getElementById("sail-count").textContent = String(this.value.length);
   });
 
   document.getElementById("sail-go").addEventListener("click", function () {
@@ -949,7 +1071,7 @@
     var btn = document.getElementById("sail-go");
     btn.disabled = true;
     status.textContent = "hoisting...";
-    fetch("/api/fleet", {
+    apiFetch("/api/fleet", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -966,7 +1088,7 @@
           status.textContent = res.j.error || "the harbor master said no. try again.";
           return;
         }
-        status.textContent = "sailing. your pirate joins the board on its first tick (a few hours).";
+        status.textContent = "your pirate is on the water. it makes its first trade within a few hours.";
         localStorage.setItem("tpc_pirate", JSON.stringify({
           id: res.j.id,
           name: document.getElementById("sail-name").value.toLowerCase().trim(),
@@ -974,6 +1096,7 @@
         }));
         document.getElementById("sail-token").textContent = res.j.token;
         document.getElementById("sail-pass").hidden = false;
+        document.getElementById("sail-pass").scrollIntoView({ behavior: "smooth", block: "center" });
         loadFleet();
       })
       .catch(function () {

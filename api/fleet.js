@@ -10,6 +10,7 @@ import {
   readJson,
   writeJson,
 } from "./_fleet.js";
+import { gate, cacheFor } from "./_auth.js";
 
 /**
  * The fleet, lookout mode (paper only, zero friction):
@@ -30,12 +31,15 @@ function json(body, status = 200, cache = "no-store") {
     status,
     headers: {
       "Content-Type": "application/json; charset=utf-8",
-      "Cache-Control": cache,
+      "Cache-Control": cacheFor(cache),
     },
   });
 }
 
 export async function GET(request) {
+  const closed = gate(request);
+  if (closed) return closed;
+
   const url = new URL(request.url);
   const id = url.searchParams.get("id");
 
@@ -59,6 +63,9 @@ export async function GET(request) {
 }
 
 export async function POST(request) {
+  const closed = gate(request);
+  if (closed) return closed;
+
   let body;
   try {
     body = await request.json();

@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { gate, cacheFor } from "./_auth.js";
 
 /**
  * Vercel serverless twin of the local dashboard endpoint in src/server.ts.
@@ -98,7 +99,10 @@ function computeEquity(state, quotes) {
   return Math.round(equity * 100) / 100;
 }
 
-export async function GET() {
+export async function GET(request) {
+  const closed = gate(request);
+  if (closed) return closed;
+
   const quotes = (await Promise.all(UNIVERSE.map(fetchQuote))).filter(Boolean);
 
   const agents = AGENTS.map((persona) => {
@@ -140,7 +144,7 @@ export async function GET() {
   return new Response(JSON.stringify(body), {
     headers: {
       "Content-Type": "application/json; charset=utf-8",
-      "Cache-Control": "s-maxage=60, stale-while-revalidate=120",
+      "Cache-Control": cacheFor("s-maxage=60, stale-while-revalidate=120"),
     },
   });
 }
