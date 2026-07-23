@@ -16,7 +16,9 @@
     "fleet:tick": "node --env-file-if-exists=.env --env-file-if-exists=.env.local --import tsx src/fleet-tick.ts",
     "wallets:gen": "node --import tsx src/chain/wallets.ts gen",
     "wallets:show": "node --import tsx src/chain/wallets.ts show",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "zerox:check": "node --env-file-if-exists=.env --env-file-if-exists=.env.local --import tsx src/chain/prepare-trade.ts check",
+    "trade:prepare": "node --env-file-if-exists=.env --env-file-if-exists=.env.local --import tsx src/chain/prepare-trade.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.112.5",

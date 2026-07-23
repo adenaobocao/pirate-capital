@@ -1,5 +1,54 @@
 [
   {
+    "file": "crow-2026-07-23T02-05-02-079Z.svg",
+    "pirate": "crow",
+    "ts": "2026-07-23T02:05:02.079Z",
+    "ticker": "GOOGL",
+    "action": "buy"
+  },
+  {
+    "file": "cannon-2026-07-23T02-05-02-079Z.svg",
+    "pirate": "cannon",
+    "ts": "2026-07-23T02:05:02.079Z",
+    "ticker": "AAPL",
+    "action": "buy"
+  },
+  {
+    "file": "flint-2026-07-23T02-05-02-079Z.svg",
+    "pirate": "flint",
+    "ts": "2026-07-23T02:05:02.079Z",
+    "ticker": "MSTR",
+    "action": "buy"
+  },
+  {
+    "file": "flint-2026-07-23T01-59-36-869Z.svg",
+    "pirate": "flint",
+    "ts": "2026-07-23T01:59:36.869Z",
+    "ticker": "MSTR",
+    "action": "buy"
+  },
+  {
+    "file": "flint-2026-07-23T01-59-36-869Z.svg",
+    "pirate": "flint",
+    "ts": "2026-07-23T01:59:36.869Z",
+    "ticker": "COIN",
+    "action": "sell"
+  },
+  {
+    "file": "crow-2026-07-23T01-56-58-776Z.svg",
+    "pirate": "crow",
+    "ts": "2026-07-23T01:56:58.776Z",
+    "ticker": "AMD",
+    "action": "buy"
+  },
+  {
+    "file": "crow-2026-07-23T01-56-57-322Z.svg",
+    "pirate": "crow",
+    "ts": "2026-07-23T01:56:57.322Z",
+    "ticker": "AMD",
+    "action": "buy"
+  },
+  {
     "file": "crow-2026-07-23T01-05-01-845Z.svg",
     "pirate": "crow",
     "ts": "2026-07-23T01:05:01.845Z",
@@ -84,20 +133,6 @@
     "action": "buy"
   },
   {
-    "file": "crow-2026-07-22T23-26-23-969Z.svg",
-    "pirate": "crow",
-    "ts": "2026-07-22T23:26:23.969Z",
-    "ticker": "PLTR",
-    "action": "buy"
-  },
-  {
-    "file": "cannon-2026-07-22T23-26-23-969Z.svg",
-    "pirate": "cannon",
-    "ts": "2026-07-22T23:26:23.969Z",
-    "ticker": "AAPL",
-    "action": "buy"
-  },
-  {
     "file": "flint-2026-07-22T23-26-23-969Z.svg",
     "pirate": "flint",
     "ts": "2026-07-22T23:26:23.969Z",
@@ -105,24 +140,10 @@
     "action": "buy"
   },
   {
-    "file": "flint-2026-07-22T23-26-23-969Z.svg",
-    "pirate": "flint",
-    "ts": "2026-07-22T23:26:23.969Z",
-    "ticker": "MSTR",
-    "action": "buy"
-  },
-  {
     "file": "ledger-2026-07-22T23-08-45-334Z.svg",
     "pirate": "ledger",
     "ts": "2026-07-22T23:08:45.334Z",
     "ticker": "AAPL",
-    "action": "buy"
-  },
-  {
-    "file": "flint-2026-07-22T23-08-45-334Z.svg",
-    "pirate": "flint",
-    "ts": "2026-07-22T23:08:45.334Z",
-    "ticker": "PLTR",
     "action": "buy"
   },
   {
@@ -143,20 +164,6 @@
     "file": "ledger-2026-07-22T23-03-54-105Z.svg",
     "pirate": "ledger",
     "ts": "2026-07-22T23:03:54.105Z",
-    "ticker": "AMD",
-    "action": "buy"
-  },
-  {
-    "file": "flint-2026-07-22T23-03-54-105Z.svg",
-    "pirate": "flint",
-    "ts": "2026-07-22T23:03:54.105Z",
-    "ticker": "COIN",
-    "action": "buy"
-  },
-  {
-    "file": "crow-2026-07-22T21-14-29-100Z.svg",
-    "pirate": "crow",
-    "ts": "2026-07-22T21:14:29.100Z",
     "ticker": "AMD",
     "action": "buy"
   }
